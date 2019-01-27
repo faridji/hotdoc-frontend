@@ -1,0 +1,105 @@
+<!--
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+      <mat-nav-list (click)="sidenav.close()">
+        <a mat-list-item>
+          <mat-icon class="icon">input</mat-icon>
+          <span class="label">Login</span>
+        </a>
+        <a mat-list-item>
+          <mat-icon class="icon">home</mat-icon>
+          <span class="label">Home</span>
+        </a>
+        <a mat-list-item>
+          <mat-icon class="icon">dashboard</mat-icon>
+          <span class="label">Dashboard</span>
+        </a>
+        <a mat-list-item type="button">
+          <mat-icon class="icon">input</mat-icon>
+          <span class="label">LogOut</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <div fxHide.gt-xs>
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+
+        <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
+          <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+            <li>
+              <a routerLink="/">
+                OShop
+              </a>
+            </li>
+            <li>
+              <a>
+                <mat-icon class="icon">shopping_cart</mat-icon>
+                <span class="label" routerLink="shopping-cart">Shopping Cart</span>
+              </a>
+            </li>
+            <div fxFlex fxLayout fxLayoutAlign="end">
+              <li>
+                <mat-label mat-button [matMenuTriggerFor]="menu">Username <span>
+                    <mat-icon>arrow_drop_down</mat-icon>
+                  </span></mat-label>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item routerLink="my-orders">My Orders</button>
+                  <button mat-menu-item routerLink="admin/orders">Manage Orders</button>
+                  <button mat-menu-item routerLink="admin/products">Manage Prducts</button>
+                  <button mat-menu-item (click)="logout()">Log Out</button>
+                </mat-menu>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </mat-toolbar>
+      <main class="content">
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+-->
+
+<div fxLayout="row" fxFlex="100" *ngIf="sections" fxLayoutGap="20px">
+  <mat-card fxLayout="column" fxFlex="24">
+    <mat-card-title *ngFor="let sec of sections">
+      <div style="cursor:pointer" (click)="onSectionSelect(sec)">
+        {{ sec.name }}
+      </div>
+    </mat-card-title>
+  </mat-card>
+
+  <div fxLayout="column" fxFlex="74" *ngIf="selectedSection">
+    <div>{{ selectedSection.name }}</div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div>Name</div>
+      <div>Value</div>
+      <div>Comments</div>
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between start"
+      *ngFor="let setting of selectedSection.settings"
+    >
+      <div>{{ setting.name }}</div>
+      <div>
+        <div *ngIf="setting.input === 'input'">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="setting.value" />
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="setting.input === 'check_box'">
+          <mat-checkbox [(ngModel)]="setting.value"></mat-checkbox>
+        </div>
+      </div>
+      <div>{{ setting.comments }}</div>
+    </div>
+  </div>
+</div>
