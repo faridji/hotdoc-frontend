@@ -6,6 +6,15 @@ import { AdminSignInComponent } from './admin-sign-in/admin-sign-in.component';
 import { PatientSignInComponent } from './patient-sign-in/patient-sign-in.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MaterialModule } from '../material-components/material-components.module';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: 'login-main-page', component: LoginMainPageComponent },
+  { path: 'admin-sign-in', component: AdminSignInComponent },
+  { path: 'patient-sign-in', component: PatientSignInComponent },
+  { path: 'forget-password', component: ForgotPasswordComponent }
+]
+
 
 @NgModule({
   declarations: [
@@ -14,10 +23,19 @@ import { MaterialModule } from '../material-components/material-components.modul
     AdminSignInComponent,
     PatientSignInComponent, 
     ForgotPasswordComponent],
+
   imports: [
     CommonModule,
-
+    RouterModule.forChild(routes),
     MaterialModule,
+  ],
+
+  exports: [
+    SignUpComponent, 
+    LoginMainPageComponent,
+    AdminSignInComponent,
+    PatientSignInComponent, 
+    ForgotPasswordComponent
   ]
 })
 export class MembershipModule { }
