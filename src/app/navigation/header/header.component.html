@@ -4,17 +4,42 @@
           <mat-icon>menu</mat-icon>
       </button>
   </div>
-  <div>
-      <a routerLink="/home">Hotdoc</a>
+ 
+  <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li>
+                <a routerLink="/home">HotDoc</a>
+            </li>
+            <li>
+                <a routerLink="/doctors">Doctors</a>
+            </li>
+            <li>
+                <a routerLink="/departments">Departments</a>
+            </li>
+            <li>
+                <a routerLink="/appointment">Appointments</a>
+            </li>
+        </ul>
   </div>
+
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-          <li>
-              <a routerLink="/doctors">Doctors</a>
-          </li>
-          <li>
-              <a routerLink="/departments">Departments</a>
-          </li>
-      </ul>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    User<mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="signIn()">
+                        <mat-icon>supervisor_account</mat-icon>
+                        <span>Sign in</span>
+                    </button>
+                    <button mat-menu-item (click)="signUp()">
+                        <mat-icon>account_circle</mat-icon>
+                        <span>Sign Up</span>
+                    </button>
+                   
+                </mat-menu>
+            </li>
+        </ul>
   </div>
 </mat-toolbar>

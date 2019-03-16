@@ -10,14 +10,17 @@ import {
   MatMenuModule,
   MatInputModule,
   MatCardModule,
-  MatTabsModule
+  MatTabsModule,
+  MatSelectModule
 } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
   declarations: [],
   exports: [
     BrowserAnimationsModule,
+
     FlexLayoutModule,
+
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
@@ -28,6 +31,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatInputModule,
     MatCardModule,
     MatTabsModule,
+    MatSelectModule,
   ]
 })
-export class MaterialComponentsModule {}
+export class MaterialModule {}

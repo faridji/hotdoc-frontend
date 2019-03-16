@@ -1,9 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { AppComponent } from "./app.component";
-import { MaterialComponentsModule } from "./material-components/material-components.module";
 import { RouterModule, Routes } from "@angular/router";
 import { FormsModule } from "@angular/forms";
+
+
+import { AppComponent } from "./app.component";
 import { DoctorsComponent } from "./doctors/doctors.component";
 import { DepartmentsComponent } from "./departments/departments.component";
 import { AppointmentsComponent } from "./appointments/appointments.component";
@@ -12,6 +13,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { MaterialModule } from './material-components/material-components.module';
 
 const routes: Routes =  [
   { path: '', redirectTo: 'home', pathMatch:'full' },
@@ -41,7 +43,7 @@ const routes: Routes =  [
   imports: [
     BrowserModule,
     FormsModule,
-    MaterialComponentsModule,
+    MaterialModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],
