@@ -7,14 +7,15 @@ import { PatientSignInComponent } from './patient-sign-in/patient-sign-in.compon
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MaterialModule } from '../material-components/material-components.module';
 import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'login-main-page', component: LoginMainPageComponent },
   { path: 'admin-sign-in', component: AdminSignInComponent },
   { path: 'patient-sign-in', component: PatientSignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
   { path: 'forget-password', component: ForgotPasswordComponent }
 ]
-
 
 @NgModule({
   declarations: [
@@ -26,8 +27,10 @@ const routes: Routes = [
 
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    ReactiveFormsModule,
     MaterialModule,
+
+    RouterModule.forChild(routes),
   ],
 
   exports: [

@@ -1,15 +1,16 @@
 <mat-toolbar color="primary">
-  <div >
+  <div>
       <button fxHide fxShow.xs="true" mat-icon-button (click)="onToggleSidenav()">
           <mat-icon>menu</mat-icon>
       </button>
   </div>
  
+  <div style="margin-right: 15px;">
+    <a routerLink="/home">HotDoc</a>
+  </div>
+
   <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-            <li>
-                <a routerLink="/home">HotDoc</a>
-            </li>
             <li>
                 <a routerLink="/doctors">Doctors</a>
             </li>
@@ -17,7 +18,7 @@
                 <a routerLink="/departments">Departments</a>
             </li>
             <li>
-                <a routerLink="/appointment">Appointments</a>
+                <a routerLink="/appointments">Appointments</a>
             </li>
         </ul>
   </div>
@@ -29,12 +30,12 @@
                     User<mat-icon>arrow_drop_down</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="signIn()">
+                    <button mat-menu-item routerLink="login-main-page">
                         <mat-icon>supervisor_account</mat-icon>
                         <span>Sign in</span>
                     </button>
-                    <button mat-menu-item (click)="signUp()">
-                        <mat-icon>account_circle</mat-icon>
+                    <button mat-menu-item routerLink="sign-up">
+                        <mat-icon>how_to_reg</mat-icon>
                         <span>Sign Up</span>
                     </button>
                    

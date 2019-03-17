@@ -17,10 +17,11 @@ import { RouterModule } from "@angular/router";
     BrowserModule,
     FormsModule,
 
-    RouterModule.forRoot([]),
     MainModule,
     MembershipModule,
     MaterialModule,
+    RouterModule.forRoot([]),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

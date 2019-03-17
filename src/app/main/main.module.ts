@@ -21,8 +21,6 @@ const routes: Routes =  [
   { path: "departments", component: DepartmentsComponent },
   { path: "appointments", component: AppointmentsComponent },
   { path: "about", component: AboutComponent },
-
-  { path: '**', redirectTo: 'home', }
 ]
 
 @NgModule({
@@ -44,12 +42,7 @@ const routes: Routes =  [
   ],
 
   exports: [
-    HomeComponent,
-    AboutComponent,
     LayoutComponent,
-    DoctorsComponent,
-    DepartmentsComponent,
-    AppointmentsComponent,
     HeaderComponent,
     SidenavListComponent,
   ]
