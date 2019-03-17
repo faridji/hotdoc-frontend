@@ -1,3 +1,19 @@
-<p>
-  login-main-page works!
-</p>
+<div fxLayout fxLayoutGap="40px" fxLayoutGap.xs="20px" fxLayout.xs="column"
+      style="background-color: #eee; padding: 60px 20px;">
+
+  <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+            fxFlex="33" fxFlex.xs="100" fxFlex.sm="49" style="color: #007b5e;">
+    <img class="round-img" src="/assets/images/patient1.jpg" alt="image">
+    <h3>Patient</h3>
+    <mat-icon class="add-icon" routerLink="/patient-signIn">add_box</mat-icon>
+
+  </mat-card>
+
+  <mat-card fxLayout="column" fxLayoutAlign="center center" 
+            fxLayoutGap="10px" fxFlex="33" fxFlex.xs="100" fxFlex.sm="49" style="color: #007b5e;">
+    <img class="round-img" src="/assets/images/admin.jpg" alt="image">
+    <h3>Admin</h3>
+    <mat-icon class="add-icon" routerLink="/admin-signIn">add_box</mat-icon>
+
+  </mat-card>
+</div>

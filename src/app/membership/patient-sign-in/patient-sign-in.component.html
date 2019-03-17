@@ -1,3 +1,35 @@
-<p>
-  patient-sign-in works!
-</p>
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <form [formGroup]="theForm" (ngSubmit)="onSubmit()" fxLayout="row wrap" fxFlex="40" fxFlex.xs="100">
+    
+    <h1 fxFlex="100">Please sign in</h1>
+
+    <mat-form-field fxFlex="100">
+      <input matInput formControlName="email" placeholder="email" type="email">
+      <mat-error *ngIf="email.hasError('required')">
+        email is <strong>required</strong>
+      </mat-error>
+      
+      <mat-error *ngIf="email.hasError('email')">
+        Please provide a <strong>valid</strong> email address.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+      <input matInput formControlName="password" placeholder="password" type="password">
+      <mat-error *ngIf="password.hasError('required')">
+        password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div style="margin-bottom: 15px" fxFlex="100">
+      <a routerLink="/forget-password" style="cursor:pointer">forget password ?</a>
+    </div>
+
+    <div fxFlex="100" fxFlex.xs="20">
+      <button fxFlex type="submit" mat-raised-button [disabled]="!theForm.valid" color="primary">Sign In</button>
+    </div>
+  </form>
+</div>
+
+
+
