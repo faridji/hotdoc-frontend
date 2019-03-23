@@ -1,19 +1,52 @@
 <div fxLayout fxLayoutGap="40px" fxLayoutGap.xs="20px" fxLayout.xs="column"
-      style="background-color: #eee; padding: 60px 20px;">
+      style="background-color: #eee; padding: 60px 20px;" fxFlex="100">
 
-  <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
-            fxFlex="33" fxFlex.xs="100" fxFlex.sm="49" style="color: #007b5e;">
-    <img class="round-img" src="/assets/images/patient1.jpg" alt="image">
-    <h3>Patient</h3>
-    <mat-icon class="add-icon" routerLink="/patient-signIn">add_box</mat-icon>
+  <div class="image-flip" ontouchstart="this.classList.toggle('hover');" fxFlex="33" fxFlex.xs="100" fxFlex.sm="49">
+    <div class="mainflip">        
+      <div class="frontside">
+          <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                    fxFlex="100" style="color: #007b5e;">
+              <img class="round-img" src="/assets/images/patient1.jpg" alt="image">
+              <h3>Patient</h3>
+              <mat-icon class="add-icon">add_box</mat-icon>
+          </mat-card>
+      </div>
+      <div class="backside">
+        <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                    fxFlex="fxFlex" class="card">
+            <h4 class="card-title">Patient</h4>
+            <p class="card-text">Go To Patient login page. Enter the email address password
+            </p>
+            <a routerLink="/patient-signIn">
+                <button type="button" mat-raised-button class="primary-button">Admin Login</button>
+            </a>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 
-  </mat-card>
 
-  <mat-card fxLayout="column" fxLayoutAlign="center center" 
-            fxLayoutGap="10px" fxFlex="33" fxFlex.xs="100" fxFlex.sm="49" style="color: #007b5e;">
-    <img class="round-img" src="/assets/images/admin.jpg" alt="image">
-    <h3>Admin</h3>
-    <mat-icon class="add-icon" routerLink="/admin-signIn">add_box</mat-icon>
-
-  </mat-card>
+  <div class="image-flip" ontouchstart="this.classList.toggle('hover');" fxFlex="33" fxFlex.xs="100" fxFlex.sm="49">
+    <div class="mainflip">        
+      <div class="frontside">
+          <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                    fxFlex="100" style="color: #007b5e;">
+              <img class="round-img" src="/assets/images/admin.jpg" alt="image">
+              <h3>Admin</h3>
+              <mat-icon class="add-icon">add_box</mat-icon>
+          </mat-card>
+      </div>
+      <div class="backside">
+        <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                    fxFlex="fxFlex" class="card">
+            <h4 class="card-title">Admin</h4>
+            <p class="card-text">Go To Admin login page. Enter the email address password
+            </p>
+            <a routerLink="/admin-signIn">
+                <button type="button" mat-raised-button class="primary-button">Admin Login</button>
+            </a>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>
