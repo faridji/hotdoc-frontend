@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { get } from 'http';
 
 @Component({
   selector: 'app-sign-up',

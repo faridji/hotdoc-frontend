@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'doctors',
@@ -120,9 +121,15 @@ export class DoctorsComponent implements OnInit {
     },
     
   ]
-  constructor() { }
+
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  doctorDetail(id: string) {
+    this.router.navigate(['doctors', id])
   }
 
 }

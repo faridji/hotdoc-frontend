@@ -11,6 +11,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { MaterialModule } from '../material-components/material-components.module';
 import { LayoutComponent } from './layout/layout.component';
+import { DoctorDetailComponent } from './doctors/detail/detail.component';
 
 
 const routes: Routes =  [
@@ -18,6 +19,7 @@ const routes: Routes =  [
 
   { path: "home", component: HomeComponent },
   { path: "doctors", component: DoctorsComponent },
+  { path: "doctors/:id", component: DoctorDetailComponent},
   { path: "departments", component: DepartmentsComponent },
   { path: "appointments", component: AppointmentsComponent },
   { path: "about", component: AboutComponent },
@@ -28,6 +30,7 @@ const routes: Routes =  [
     HomeComponent,
     AboutComponent,
     DoctorsComponent,
+    DoctorDetailComponent,
     LayoutComponent,
     DepartmentsComponent,
     AppointmentsComponent,

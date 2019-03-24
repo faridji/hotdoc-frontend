@@ -22,13 +22,11 @@
                         <mat-divider *ngIf="!last" [vertical]="true"></mat-divider>
                     </ng-container>
                   </div>
-                
-                <a routerLink="/patient-signIn">
-                    <button type="button" mat-raised-button class="primary-button">Detail</button>
-                </a>
+
+                  <button type="button" mat-raised-button class="primary-button" (click)="doctorDetail(doctor.id)">Detail</button>
             </mat-card>
           </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
