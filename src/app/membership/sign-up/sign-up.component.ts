@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { get } from 'http';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,20 +10,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
 
   theForm: FormGroup;
-  constructor() {
-    this.theForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
-      mob_number: new FormControl('', [
-                  Validators.required,
-                  Validators.minLength(11),
-                  Validators.maxLength(11)
-                ]),
-      age: new FormControl('', Validators.min(0)),
-      address: new FormControl(''),
-      image: new FormControl(),
+  constructor(private fb: FormBuilder) {
+    this.theForm = fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      mob_number: ['', [Validators.required, Validators.min(11), Validators.max(13)] ],
+      age: [null, Validators.min(0)],
+      address: [''],
+      image: ['']
     })
+   
    }
 
   ngOnInit() {

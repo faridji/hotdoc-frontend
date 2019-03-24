@@ -1,3 +1,34 @@
-<p>
-  doctors works!
-</p>
+<div fxLayout="row wrap" fxFlex="100" class="doctors-panel" *ngIf="doctors.length > 0">
+  <h1 class="doctors-panel-title" fxFlex="100">Doctors</h1>
+  <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutGap.xs="20px" fxLayout.xs="column" fxFlex="100">
+      <div class="image-flip" ontouchstart="this.classList.toggle('hover');"
+            fxFlex="30" fxFlex.xs="100" fxFlex.sm="49" *ngFor = "let doctor of doctors">
+        <div class="mainflip">        
+          <div class="frontside">
+              <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                        fxFlex="100" style="color: #007b5e;">
+                  <img class="round-img" src="{{ doctor.image }}" alt="image">
+                  <h3>{{ doctor.name }}</h3>
+                  <mat-icon class="add-icon">add_box</mat-icon>
+              </mat-card>
+          </div>
+          <div class="backside">
+            <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                        fxFlex="fxFlex" class="card">
+                <h4 class="card-title">{{ doctor.name }}</h4>
+                  <div fxLayout="row wrap">
+                    <ng-container *ngFor="let degree of doctor.degrees; let last=last">
+                        <p class="card-text" >{{ degree.title }}</p>
+                        <mat-divider *ngIf="!last" [vertical]="true"></mat-divider>
+                    </ng-container>
+                  </div>
+                
+                <a routerLink="/patient-signIn">
+                    <button type="button" mat-raised-button class="primary-button">Detail</button>
+                </a>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
