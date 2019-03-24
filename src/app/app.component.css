@@ -9,3 +9,7 @@ mat-sidenav {
 main {
   padding: 10px;
 }
+
+.all-wrap {
+  min-height: 100vh;
+}

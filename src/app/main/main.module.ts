@@ -12,6 +12,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { MaterialModule } from '../material-components/material-components.module';
 import { LayoutComponent } from './layout/layout.component';
 import { DoctorDetailComponent } from './doctors/detail/detail.component';
+import { FooterComponent } from './navigation/footer/footer.component';
 
 
 const routes: Routes =  [
@@ -36,6 +37,7 @@ const routes: Routes =  [
     AppointmentsComponent,
     HeaderComponent,
     SidenavListComponent,
+    FooterComponent,
 
   ],
   imports: [
@@ -48,6 +50,7 @@ const routes: Routes =  [
     LayoutComponent,
     HeaderComponent,
     SidenavListComponent,
+    FooterComponent,
   ]
 })
 export class MainModule { }
