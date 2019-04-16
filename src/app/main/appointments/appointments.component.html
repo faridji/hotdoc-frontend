@@ -1,6 +1,6 @@
 <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start">
-  <mat-card fxFlex="30" fxLayout="row wrap" fxFlex.xs="100">
-    <img fxFlex="60" src="/assets/images/doctor5.jpg" alt="image" style="margin-bottom: 10px;">
+  <mat-card fxFlex="30" fxLayout="row wrap" fxFlex.xs="100" fxFlex.sm="45" [ngStyle.xs]="{'margin-bottom': '35px'}">
+    <img fxFlex="60" src="/assets/images/doctor5.jpg" alt="image" fxFlex.xs="40" style="margin-bottom: 10px;">
  
     <mat-card-content fxFlex="100" fxLayout="column" fxLayoutGap="20px">
       <span fxFlex="100" style="font-weight: 500; font-size: 1.25rem;">{{patientInfo.name}}</span>
@@ -9,7 +9,7 @@
     </mat-card-content>
   </mat-card>
 
-  <div fxFlex="65" fxLayout="row wrap" fxFlex.xs="100">
+  <div fxFlex="65" fxLayout="row wrap" fxFlex.xs="100" fxFlex.sm="50">
     <div fxFlex="100" fxLayout="row wrap">
       <div fxFlex="100">Department</div>
       <mat-form-field fxFlex appearance="outline">
