@@ -1,3 +1,48 @@
-<p>
-  appointments works!
-</p>
+<div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start">
+  <mat-card fxFlex="30" fxLayout="row wrap" fxFlex.xs="100">
+    <img fxFlex="60" src="/assets/images/doctor5.jpg" alt="image" style="margin-bottom: 10px;">
+ 
+    <mat-card-content fxFlex="100" fxLayout="column" fxLayoutGap="20px">
+      <span fxFlex="100" style="font-weight: 500; font-size: 1.25rem;">{{patientInfo.name}}</span>
+      <span fxFlex="100" *ngIf="patientInfo.age">{{patientInfo.age}} Years</span>
+      <span fxFlex="100">{{patientInfo.mob_number}}</span>
+    </mat-card-content>
+  </mat-card>
+
+  <div fxFlex="65" fxLayout="row wrap" fxFlex.xs="100">
+    <div fxFlex="100" fxLayout="row wrap">
+      <div fxFlex="100">Department</div>
+      <mat-form-field fxFlex appearance="outline">
+        <mat-select>
+          <mat-option *ngFor="let dept of departments" [value]="dept">
+            {{dept}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" fxLayout="row wrap">
+      <div fxFlex="100">Doctor</div>
+      <mat-form-field fxFlex appearance="outline">
+        <mat-select>
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor">
+            {{doctor}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" fxLayout="row wrap">
+      <div fxFlex="100">Appointment Date</div>
+      <mat-form-field fxFlex appearance="outline">
+        <input matInput [matDatepicker]="appointment_date_picker" placeholder="Choose Appointment date">
+        <mat-datepicker-toggle matSuffix [for]="appointment_date_picker"></mat-datepicker-toggle>
+        <mat-datepicker #appointment_date_picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" fxLayout="row wrap">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </div>
+</div>

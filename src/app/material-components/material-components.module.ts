@@ -12,7 +12,9 @@ import {
   MatCardModule,
   MatTabsModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
@@ -34,6 +36,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatTabsModule,
     MatSelectModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule {}

@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentsComponent implements OnInit {
 
-  constructor() { }
+  patientInfo: any;
+  departments: any[];
+  doctors: any[];
+
+  constructor() {
+    this.patientInfo = {};
+    this.departments = [];
+    this.doctors = [];
+  }
 
   ngOnInit() {
+    this.patientInfo = {
+      name: 'Essa Abid',
+      age: 23,
+      mob_number: '03439295108',
+    }
+
+    this.departments = ['Cardiology', 'Dental', 'Surgury', 'Pythologoy'];
+    this.doctors = ['Farid ullah', 'Dilawer khan', 'Essa'];
   }
 
 }

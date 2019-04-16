@@ -58,6 +58,7 @@ export class SignUpComponent implements OnInit {
   
     Object.keys(form.controls).forEach((name) => {
       let currentControl = form.get(name);  
+      
       if (currentControl.dirty)
         changedProperties[name] = currentControl.value;
     });
@@ -67,8 +68,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     const formData = this.getChangedProperties(this.theForm);
-    this.apiService.addPatient(formData)
-        .subscribe( response => {
+    this.apiService.addPatient(formData).subscribe( response => {
           this.router.navigate(['/home']);
       }, (error: HttpErrorResponse) => {
         AlertService.shared().error(error.statusText, error.error);
