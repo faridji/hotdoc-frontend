@@ -7,6 +7,9 @@ import { MainModule } from "./main/main.module";
 import { MembershipModule } from "./membership/membership.module";
 import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HotDocApiService } from './shared/services/data.service';
 
 @NgModule({
   declarations: [
@@ -15,14 +18,16 @@ import { RouterModule } from "@angular/router";
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
 
+    SharedModule,
     MainModule,
     MembershipModule,
     MaterialModule,
     RouterModule.forRoot([]),
 
   ],
-  providers: [],
+  providers: [HotDocApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

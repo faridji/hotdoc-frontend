@@ -1,0 +1,29 @@
+
+<div fxLayout="column" fxLayoutAlign="space-between center" [ngClass]="alert.type === 'confirmWithInput' ? 'alert-dialog-2' : 'alert-dialog'" >
+
+  <div class="circle" [ngClass]="alert.type">
+      <mat-icon *ngIf="alert.icon" class="alert" [ngClass]="alert.type">{{alert.icon}}</mat-icon>
+      <div *ngIf="alert.iconText" class="alert" [ngClass]="alert.type">{{alert.iconText}}</div>
+  </div>
+
+  <div class="title">{{alert.title}}</div>
+
+  <div [style.padding-bottom]="alert.type === 'confirmWithInput' ? '20px' : '0'">{{alert.message}}</div>
+
+  <form style="width: 100%" [formGroup]="theForm" *ngIf="alert.type === 'confirmWithInput'">
+    <mat-form-field style="width: 100%;" appearance="outline" [floatLabel]="false">
+        <mat-label>{{alert.placeholder}}</mat-label>
+        <input matInput [placeholder]="alert.placeholder" formControlName="input" type="text" autocomplete="off" [required]="alert.required">
+    </mat-form-field>
+  </form>
+
+  <div fxLayout="row" fxLayoutGap="10px" *ngIf="alert.type === 'confirm' || alert.type === 'confirmWithInput'">
+    <button mat-raised-button (click)="onNegative()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!theForm.valid && alert.type === 'confirmWithInput'" (click)="onPositive()">Yes</button>
+  </div>
+
+  <div *ngIf="alert.type !== 'confirm' && alert.type !== 'confirmWithInput'">
+    <button mat-raised-button color="primary" (click)="onPositive()">OK</button>
+  </div>  
+</div>
+  

@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { AlertService } from 'src/app/shared/alerts/alerts.service';
+import { HotDocApiService } from 'src/app/shared/services/data.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { RVAlertAction } from 'src/app/shared/alerts/alerts.common';
+
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
 
   theForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, 
+              private apiService: HotDocApiService,
+              private router: Router) {
     this.theForm = fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      mob_number: ['', [Validators.required, Validators.min(11), Validators.max(13)] ],
+      mob_number: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)] ],
       age: [null, Validators.min(0)],
       address: [''],
       image: ['']
@@ -45,8 +53,26 @@ export class SignUpComponent implements OnInit {
     return this.theForm.get('age');
   }
 
+  private getChangedProperties(form: any): any {
+    let changedProperties = {};
+  
+    Object.keys(form.controls).forEach((name) => {
+      let currentControl = form.get(name);  
+      if (currentControl.dirty)
+        changedProperties[name] = currentControl.value;
+    });
+  
+    return changedProperties;
+  }
+
   onSubmit() {
-    console.log('Form:', this.theForm.value);
+    const formData = this.getChangedProperties(this.theForm);
+    this.apiService.addPatient(formData)
+        .subscribe( response => {
+          this.router.navigate(['/home']);
+      }, (error: HttpErrorResponse) => {
+        AlertService.shared().error(error.statusText, error.error);
+      })
   }
 
 }
