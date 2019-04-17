@@ -1,0 +1,9 @@
+.rounded_img {
+    height: 150px;
+    border-radius: 50%;
+}
+
+.doctor_title {
+    font-weight: 700;
+    font-size: 20px;
+}

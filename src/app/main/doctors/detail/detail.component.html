@@ -1,3 +1,68 @@
-<p>
-  doctor detail page works
-</p>
+<div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start" style="padding:10px;">
+
+  <mat-card fxFlex="30" *ngIf="doctor_details">
+    <mat-card-content fxFlex fxLayout="row wrap">
+      <h2 fxFlex="100" fxLayoutAlign="start" style="margin-bottom: 10px;">{{doctor_details.name}}</h2>
+      <img fxFlex="50" [src]="doctor_details.image" 
+            class="rounded_img" alt="doctor image" style="margin-bottom: 10px">
+      <button fxFlex="100" mat-raised-button color="primary" (click)="makeAppointment()">Make Appointment</button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card fxFlex="68">
+    <mat-card-content fxFlex fxLayout="row wrap">
+      <div fxFlex="100" fxLayout="row wrap" style="margin-bottom: 20px;">
+        <img  src="/assets/extras/education.png" alt="education" width="100px" height="100px" 
+              style="margin-bottom: 10px;">
+        <h2 fxFlex="100" style="margin-bottom: 10px;">Education</h2>
+        <div fxFlex="100" style="margin-bottom: 10px;" *ngFor="let edu of doctor_details.education">{{ edu }}</div>
+      </div>
+
+      <mat-divider [inset]="true"></mat-divider>
+      <div style="height: 20px;"></div>
+
+      <div fxFlex="100" fxLayout="row wrap" style="margin-bottom: 20px;">
+        <img src="/assets/extras/experience.jpg" alt="experience" width="100px" height="100px" 
+             style="margin-bottom: 10px;">
+        <h2 fxFlex="100" style="margin-bottom: 10px;">Experience</h2>
+        <div fxFlex="100">{{doctor_details.experience}}</div>
+      </div>
+
+      <mat-divider [inset]="true"></mat-divider>
+      <div style="height: 20px;"></div>
+
+      <div fxFlex="100" fxLayout="row wrap" style="margin-bottom: 20px;">
+        <img src="/assets/extras/awards.jpg" alt="awards" width="100px" height="100px" 
+              style="margin-bottom: 10px;">
+        <h2 fxFlex="100" style="margin-bottom: 10px;">Awards, Recognition and Publication</h2>
+        <div fxFlex="100">
+            24 publications in per renewed journals Renewer for JCPSP,
+            JPMA,Endocrine Practice,Journal of Diabetes & Endocrinology Received Donald Etzwiler award 
+            from International Diabetes & Endocrinology Past President Pakistan Endocrine Society 
+            Vice President South Asian Federation Endocrine Society Master trainer for CGMS Technology
+          </div>
+      </div>
+
+      <mat-divider [inset]="true"></mat-divider>
+      <div style="height: 20px;"></div>
+
+      <div fxFlex="100" fxLayout="row wrap" style="margin-bottom: 20px;">
+        <img src="/assets/extras/email.png" alt="email" width="100px" height="100px" 
+              style="margin-bottom: 10px;">
+        <h2 fxFlex="100" style="margin-bottom: 10px;">Email</h2>
+        <div fxFlex="100">{{doctor_details.email}}</div>
+      </div>
+
+      <mat-divider [inset]="true"></mat-divider>
+      <div style="height: 20px;"></div>
+
+      <div fxFlex="100" fxLayout="row wrap" style="margin-bottom: 20px;">
+        <img src="/assets/extras/phone.jpg" alt="phone" width="100px" height="100px" 
+              style="margin-bottom: 10px;">
+        <h2 fxFlex="100" style="margin-bottom: 10px;">Phone</h2>
+        <div fxFlex="100">{{doctor_details.mob_number}}</div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
