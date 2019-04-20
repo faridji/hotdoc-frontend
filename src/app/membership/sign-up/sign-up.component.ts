@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { AlertService } from 'src/app/shared/alerts/alerts.service';
 import { HotDocApiService } from 'src/app/shared/services/data.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { RVAlertAction } from 'src/app/shared/alerts/alerts.common';
+import { AlertsService } from 'src/app/shared/alerts/alerts.service';
+import { AlertAction } from 'src/app/shared/alerts/alerts.common';
 
 
 @Component({
@@ -69,9 +69,15 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     const formData = this.getChangedProperties(this.theForm);
     this.apiService.addPatient(formData).subscribe( response => {
+
+      AlertsService.success('Success', 'Patient Created.').subscribe((resp: AlertAction) => {
+        if(resp.positive)
+        {
           this.router.navigate(['/home']);
+        }
+      });
       }, (error: HttpErrorResponse) => {
-        AlertService.shared().error(error.statusText, error.error);
+        AlertsService.error(error.statusText, error.message);
       })
   }
 

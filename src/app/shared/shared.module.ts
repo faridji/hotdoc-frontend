@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlertComponent } from './alerts/alert/alert.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material-components/material-components.module';
+import { AlertComponent } from './alerts/alerts.component';
 
 @NgModule({
   declarations: [AlertComponent],

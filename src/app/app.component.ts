@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AlertService } from './shared/alerts/alerts.service';
+import { AlertsService } from './shared/alerts/alerts.service';
 
 @Component({
   selector: "app-root",
@@ -8,6 +8,6 @@ import { AlertService } from './shared/alerts/alerts.service';
 })
 
 export class AppComponent {
-  constructor(private alertService: AlertService) {
+  constructor(private alertService: AlertsService) {
   }
 }
