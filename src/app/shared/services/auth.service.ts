@@ -29,6 +29,14 @@ export class AuthService {
       }
   }
 
+  login(credentials: any, userType: string)
+  {
+    if (userType === 'admin')
+      return this.http.post(this.baseUrl + '/api/auth/admin', credentials);
+    if (userType === 'patient')
+      return this.http.post(this.baseUrl + '/api/auth/patient', credentials);
+  }
+
   logout()
   {
     localStorage.removeItem('token');
