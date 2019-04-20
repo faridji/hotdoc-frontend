@@ -1,13 +1,28 @@
-<div fxLayout="row wrap" fxLayoutAlign="space-between">
+<div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between">
   <div fxFlex="20" class="admin-side-bar">
-    <ul>
-      <li *ngFor="let m of menu">
-        {{m}}
-      </li>
-    </ul>
+    <mat-list role="list" class="list">
+      <mat-list-item [class.selected]="m === selectedMenu" class="item" 
+                      *ngFor="let m of menu" role="listitem" (click)="selectedMenuChanged(m)">{{ m }}
+      </mat-list-item>
+    </mat-list>
   </div>
 
-  <div fxFlex="79" fxLayout="row wrap">
+  <div fxFlex="78" fxLayout="row wrap">
 
+    <ng-container *ngIf="selectedMenu === 'Dashboard'">
+      <h1>Dashboard Selected</h1>
+    </ng-container>
+
+    <ng-container *ngIf="selectedMenu === 'Patients'">
+      <app-patient-list fxFlex="100"></app-patient-list>
+    </ng-container>
+
+    <ng-container *ngIf="selectedMenu === 'Doctors'">
+      <h1>Doctors Selected</h1>
+    </ng-container>
+
+    <ng-container *ngIf="selectedMenu === 'Departments'">
+      <h1>Departments Selected</h1>
+    </ng-container>
   </div>
 </div>

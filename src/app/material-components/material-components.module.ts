@@ -15,6 +15,8 @@ import {
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatTableModule,
+
 } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
@@ -37,7 +39,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatSelectModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}

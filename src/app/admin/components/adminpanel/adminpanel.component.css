@@ -1,4 +1,13 @@
-.admin-side-bar {
-    background: lightgray;
-    padding: 10px;
+
+.selected {
+    background-color: #CFD8DC !important;
+    color: white;
+}
+
+.item {
+    cursor: pointer;
+}
+
+.item:hover{
+    background-color: #EEE;
 }

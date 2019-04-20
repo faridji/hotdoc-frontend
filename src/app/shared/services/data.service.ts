@@ -8,11 +8,18 @@ export class HotDocApiService {
 
   baseUrl: string;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) 
+  { 
     this.baseUrl = "http://localhost:3000";
   }
 
-  addPatient(postData: any) {
+  addPatient(postData: any) 
+  {
     return this.http.post(this.baseUrl + '/api/patients', postData, {observe: 'response'});
+  }
+
+  getAllPatients()
+  {
+    return this.http.get(this.baseUrl + '/api/patients');
   }
 }
