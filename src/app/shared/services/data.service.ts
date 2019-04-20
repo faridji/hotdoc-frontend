@@ -22,4 +22,9 @@ export class HotDocApiService {
   {
     return this.http.get(this.baseUrl + '/api/patients');
   }
+
+  deletePatient(id: string)
+  {
+    return this.http.delete(this.baseUrl + '/api/patients/' + id);
+  }
 }
