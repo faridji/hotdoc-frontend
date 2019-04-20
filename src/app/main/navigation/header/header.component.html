@@ -23,7 +23,7 @@
         </ul>
   </div>
 
-  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+  <div *ngIf="!loggedInUserName" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
                 <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -43,4 +43,9 @@
             </li>
         </ul>
   </div>
+
+  <div *ngIf="loggedInUserName" fxFlex fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+    <img src="/assets/images/avatar.jpg" class="round-image" alt="user">
+    <span>{{loggedInUserName}}</span>
+</div>
 </mat-toolbar>

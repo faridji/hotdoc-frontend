@@ -13,6 +13,6 @@ export class HotDocApiService {
   }
 
   addPatient(postData: any) {
-    return this.http.post(this.baseUrl + '/api/patients', postData);
+    return this.http.post(this.baseUrl + '/api/patients', postData, {observe: 'response'});
   }
 }

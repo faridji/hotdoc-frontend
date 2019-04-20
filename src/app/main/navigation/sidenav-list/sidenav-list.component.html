@@ -9,7 +9,7 @@
     <mat-icon>perm_contact_calendar</mat-icon><span class="nav-caption">Appointments</span>
     </a>
 
-    <mat-list-item [matMenuTriggerFor]="menu">
+    <mat-list-item [matMenuTriggerFor]="menu" *ngIf="!loggedInUserName">
         <mat-icon>unfold_more</mat-icon>
         <a matline>User</a>
     </mat-list-item>

@@ -22,3 +22,9 @@ mat-toolbar{
         border-radius: 0px;
     }
 }
+
+.round-image{
+    width: 50px;
+    height: 45px;
+    border-radius: 50%;
+}

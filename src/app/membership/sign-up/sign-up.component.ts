@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { HotDocApiService } from 'src/app/shared/services/data.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { AlertAction } from 'src/app/shared/alerts/alerts.common';
+import { AuthService } from 'src/app/shared/services/auth.service';
+
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Component({
@@ -17,6 +20,7 @@ export class SignUpComponent implements OnInit {
   theForm: FormGroup;
   constructor(private fb: FormBuilder, 
               private apiService: HotDocApiService,
+              private authService: AuthService,
               private router: Router) {
     this.theForm = fb.group({
       name: ['', Validators.required],
@@ -68,7 +72,16 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     const formData = this.getChangedProperties(this.theForm);
-    this.apiService.addPatient(formData).subscribe( response => {
+    this.apiService.addPatient(formData).subscribe( (response) => {
+
+      const token = response.headers.get('x-auth-token')
+      const decodedToken = new JwtHelperService().decodeToken(token);
+      this.authService.user_name.next(decodedToken.name);
+
+      if (token)
+      {
+        localStorage.setItem('token', token);
+      }
 
       AlertsService.success('Success', 'Patient Created.').subscribe((resp: AlertAction) => {
         if(resp.positive)
@@ -77,7 +90,7 @@ export class SignUpComponent implements OnInit {
         }
       });
       }, (error: HttpErrorResponse) => {
-        AlertsService.error(error.statusText, error.message);
+        AlertsService.error(error.statusText, error.error);
       })
   }
 
