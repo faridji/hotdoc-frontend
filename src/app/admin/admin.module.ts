@@ -8,8 +8,6 @@ import { PatientListComponent } from './components/patient-list/patient-list.com
 import { MaterialModule } from '../material-components/material-components.module';
 
 const routes: Routes =  [
-  { path: '', redirectTo: 'admin', pathMatch:'full' },
-
   { path: "admin", component: AdminpanelComponent },
   { path: "doctors", component: DoctorsListComponent },
   { path: "categories", component: CategoriesListComponent },

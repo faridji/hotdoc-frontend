@@ -10,6 +10,7 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HotDocApiService } from './shared/services/data.service';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HotDocApiService } from './shared/services/data.service';
     FormsModule,
     HttpClientModule,
 
+    AdminModule,
     SharedModule,
     MainModule,
     MembershipModule,
