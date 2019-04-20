@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminpanelComponent implements OnInit {
 
-  constructor() { }
+  menu: any[];
+  constructor() {
+    this.menu = ['Dashboard', 'Doctors', 'Patients', 'Departments'];
+  }
 
   ngOnInit() {
+    
   }
 
 }
