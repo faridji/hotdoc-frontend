@@ -28,4 +28,10 @@ export class AuthService {
         this.user_name.next(decodedToken);
       }
   }
+
+  logout()
+  {
+    localStorage.removeItem('token');
+    this.user_name.next(null);
+  }
 }
