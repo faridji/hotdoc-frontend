@@ -46,8 +46,9 @@
             <input placeholder="Upload image" formControlName="image" type="file">
         </mat-form-field> -->
 
-        <div fxFlex style="margin-top: 10px">
-            <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid">Sign Up</button>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" style="margin-top: 10px">
+            <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid || theForm.pristine">Save</button>
+            <button *ngIf="patient_id" type="button" mat-raised-button (click)="onCancel()">Cancel</button>
         </div>
     </div>
 </form>

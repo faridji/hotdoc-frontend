@@ -41,14 +41,12 @@ export class AdminSignInComponent implements OnInit {
       this.authService.user_name.next(decodedToken.name);
 
       if (token)
+      {
         localStorage.setItem('token', token);
+
+        this.router.navigate(['/admin']);
+      }
         
-      AlertsService.success('Login', 'admin Login successfully.').subscribe((resp: AlertAction) => {
-        if(resp.positive)
-        {
-          this.router.navigate(['/admin']);
-        }
-      });
       }, (error: HttpErrorResponse) => {
         AlertsService.error(error.statusText, error.error);
       })

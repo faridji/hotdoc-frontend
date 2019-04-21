@@ -13,14 +13,24 @@ export class HotDocApiService {
     this.baseUrl = "http://localhost:3000";
   }
 
+  getAllPatients()
+  {
+    return this.http.get(this.baseUrl + '/api/patients');
+  }
+
+  getPatient(id: string)
+  {
+    return this.http.get(this.baseUrl + '/api/patients/' + id);
+  }
+
   addPatient(postData: any) 
   {
     return this.http.post(this.baseUrl + '/api/patients', postData, {observe: 'response'});
   }
 
-  getAllPatients()
+  updatePatient(id: any, formData)
   {
-    return this.http.get(this.baseUrl + '/api/patients');
+    return this.http.put(this.baseUrl + '/api/patients/' + id, formData);
   }
 
   deletePatient(id: string)

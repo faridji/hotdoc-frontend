@@ -8,6 +8,7 @@ import { AlertAction } from 'src/app/shared/alerts/alerts.common';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -18,23 +19,39 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class SignUpComponent implements OnInit {
 
   theForm: FormGroup;
+  patient_id: string;
+
   constructor(private fb: FormBuilder, 
               private apiService: HotDocApiService,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private dialogRef: MatDialogRef<SignUpComponent>) 
+  {
     this.theForm = fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       mob_number: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)] ],
       age: [null, Validators.min(0)],
-      address: [''],
-      image: ['']
-    })
+      address: [null],
+    });
+
+    this.patient_id = null;
    
    }
 
   ngOnInit() {
+    if (this.patient_id !== null)
+    {
+      this.loadPatientData();
+    }
+  }
+
+  loadPatientData()
+  {
+    this.apiService.getPatient(this.patient_id).subscribe( response => {
+      this.theForm.patchValue(response);
+    })
   }
 
   get name() {
@@ -70,29 +87,46 @@ export class SignUpComponent implements OnInit {
     return changedProperties;
   }
 
+  onCancel(){
+    this.dialogRef.close({ edit: false })
+  }
+
   onSubmit() {
-    const formData = this.getChangedProperties(this.theForm);
-    this.apiService.addPatient(formData).subscribe( (response) => {
+    if (this.patient_id !== null)
+    {
+      this.apiService.updatePatient(this.patient_id, this.theForm.value).subscribe( response => {
+        console.log('Response => ', response);
+        this.dialogRef.close({ edit: true });
 
-      const token = response.headers.get('x-auth-token')
-      const decodedToken = new JwtHelperService().decodeToken(token);
-      console.log('decoded token -> ', decodedToken);
-      this.authService.user_name.next(decodedToken.name);
+      }, (error: HttpErrorResponse) => {
+        AlertsService.error('Error', error.error);
+      })
+    }
+    else 
+    {
+      const formData = this.getChangedProperties(this.theForm);
+      this.apiService.addPatient(formData).subscribe( (response) => {
 
-      if (token)
-      {
-        localStorage.setItem('token', token);
-      }
-
-      AlertsService.success('Success', 'Patient Created.').subscribe((resp: AlertAction) => {
-        if(resp.positive)
+        const token = response.headers.get('x-auth-token')
+        const decodedToken = new JwtHelperService().decodeToken(token);
+        this.authService.user_name.next(decodedToken.name);
+  
+        if (token)
         {
-          this.router.navigate(['/home']);
+          localStorage.setItem('token', token);
         }
-      });
+  
+        AlertsService.success('Success', 'Patient Created.').subscribe((resp: AlertAction) => {
+          if(resp.positive)
+          {
+            this.router.navigate(['/home']);
+          }
+        });
       }, (error: HttpErrorResponse) => {
         AlertsService.error(error.statusText, error.error);
       })
+    }
+    
   }
 
 }
