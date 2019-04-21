@@ -18,6 +18,11 @@ export class HotDocApiService {
     return this.http.get(this.baseUrl + '/api/patients');
   }
 
+  getAllDoctors()
+  {
+    return this.http.get(this.baseUrl + '/api/doctors');
+  }
+
   getPatient(id: string)
   {
     return this.http.get(this.baseUrl + '/api/patients/' + id);
