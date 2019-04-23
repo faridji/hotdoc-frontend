@@ -44,7 +44,7 @@ export class AdminSignInComponent implements OnInit {
       {
         localStorage.setItem('token', token);
 
-        this.router.navigate(['/admin']);
+        this.router.navigate(['admin']);
       }
         
       }, (error: HttpErrorResponse) => {

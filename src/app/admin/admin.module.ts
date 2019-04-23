@@ -6,12 +6,13 @@ import { DoctorsListComponent } from './components/doctors-list/doctors-list.com
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { MaterialModule } from '../material-components/material-components.module';
+import { adminAuthGuard } from '../shared/services/adminAuthGuard.service';
 
 const routes: Routes =  [
-  { path: "admin", component: AdminpanelComponent },
-  { path: "doctors", component: DoctorsListComponent },
-  { path: "categories", component: CategoriesListComponent },
-  { path: "patients", component: PatientListComponent },
+  { path: "admin", component: AdminpanelComponent, canActivate: [adminAuthGuard] },
+  { path: "doctors", component: DoctorsListComponent, canActivate: [adminAuthGuard] },
+  { path: "categories", component: CategoriesListComponent, canActivate: [adminAuthGuard]},
+  { path: "patients", component: PatientListComponent, canActivate: [adminAuthGuard] },
 
 ]
 

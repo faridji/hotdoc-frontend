@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AuthService {
   user_name: BehaviorSubject<null>;
   baseUrl: string;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router) { 
     this.baseUrl = "http://localhost:3000";
     this.user_name = new BehaviorSubject(null);
   }
@@ -25,8 +26,9 @@ export class AuthService {
       {
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(token);
-        this.user_name.next(decodedToken);
+        return decodedToken;
       }
+      return null;
   }
 
   login(credentials: any, userType: string)
@@ -41,5 +43,6 @@ export class AuthService {
   {
     localStorage.removeItem('token');
     this.user_name.next(null);
+    this.router.navigate(['/home']);
   }
 }
