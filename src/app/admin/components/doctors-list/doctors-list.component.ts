@@ -13,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class DoctorsListComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
+  selectedRowIdx: string;
 
   doctors: any;
   selectedDoctor: any;
@@ -23,6 +24,7 @@ export class DoctorsListComponent implements OnInit {
     this.displayedColumns = ['name', 'email', 'password', 'mob_number','education','department','experience','age'];
     this.doctors = null;
     this.selectedDoctor = null;
+    this.selectedRowIdx = '';
     this.showRowActions = false;
   }
 
@@ -40,6 +42,7 @@ export class DoctorsListComponent implements OnInit {
   onRowClick(row: any){
     this.showRowActions = true;
     this.selectedDoctor = row;
+    this.selectedRowIdx = row._id;
   }
 
   onTableRefresh()

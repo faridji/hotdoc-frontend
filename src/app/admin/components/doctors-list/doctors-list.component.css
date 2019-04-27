@@ -1,3 +1,7 @@
 table tr:hover {
     background-color: #D3D3D3;
 }
+
+.highlight{
+    background: #D3D3D3;
+  }

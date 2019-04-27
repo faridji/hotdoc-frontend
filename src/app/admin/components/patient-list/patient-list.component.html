@@ -49,6 +49,6 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
-        style="cursor: pointer;" (click)="onRowClick(row)"></tr>
+        style="cursor: pointer;" [class.selected]="selectedRowIdx == row._id" (click)="onRowClick(row)"></tr>
   </table>
 </div>

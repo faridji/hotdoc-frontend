@@ -1,4 +1,4 @@
-<div fxFlex="100" fxLayout="row wrap">
+   <div fxFlex="100" fxLayout="row wrap">
   
   <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center">
     <h1 fxFlex="30">Doctors</h1>
@@ -64,6 +64,6 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
-        style="cursor: pointer;" (click)="onRowClick(row)"></tr>
+        style="cursor: pointer;" [ngClass]="{'highlight': selectedRowIdx == row._id}" (click)="onRowClick(row)"></tr>
   </table>
 </div>

@@ -20,11 +20,15 @@ export class PatientListComponent implements OnInit {
   selectedPatient: any;
   displayedColumns: string[] = ['name', 'email', 'password', 'mob_number', 'age', 'address'];
   showRowActions: boolean;
+
+  selectedRowIdx: string;
   
   constructor(private apiService: HotDocApiService, private dialog: MatDialog) { 
     this.patients = null;
     this.selectedPatient = null;
     this.showRowActions = false;
+
+    this.selectedRowIdx = '';
   }
 
   ngOnInit() {
@@ -41,6 +45,8 @@ export class PatientListComponent implements OnInit {
   onRowClick(row: any){
     this.showRowActions = true;
     this.selectedPatient = row;
+    this.selectedRowIdx = row._id;
+
   }
 
   onTableRefresh()
