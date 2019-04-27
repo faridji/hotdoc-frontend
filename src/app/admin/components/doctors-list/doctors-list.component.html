@@ -1,5 +1,4 @@
-   <div fxFlex="100" fxLayout="row wrap">
-  
+<div fxFlex="100" fxLayout="row wrap">
   <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center">
     <h1 fxFlex="30">Doctors</h1>
     <div fxFlex="69" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end end"  *ngIf="showRowActions">
@@ -8,7 +7,6 @@
       <button mat-raised-button color="warn" (click)="onDelete()"><mat-icon>delete</mat-icon> Doctor</button>
     </div>
   </div>
-
 
   <table fxFlex="100" mat-table [dataSource]="doctors">
     <!-- Name Column -->

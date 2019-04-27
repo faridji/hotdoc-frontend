@@ -11,7 +11,7 @@ export class adminAuthGuard implements CanActivate{
 
     canActivate(route, state: RouterStateSnapshot): boolean{
 
-        const token = this.authService.getUser();
+        const token = this.authService.getCurrentUser();
         if (token && token['isAdmin']) return true;
 
         this.router.navigate(['admin-signIn']);

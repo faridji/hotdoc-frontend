@@ -19,7 +19,7 @@ export class AuthService {
     this.user_name = new BehaviorSubject(null);
   }
 
-  getUser()
+  getCurrentUser()
   {
       const token = localStorage.getItem('token');
       if (token)
