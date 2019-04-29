@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HotDocApiService } from 'src/app/shared/services/data.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { AlertsService } from 'src/app/shared/alerts/alerts.service';
-import { AlertAction } from 'src/app/shared/alerts/alerts.common';
 import { AuthService } from 'src/app/shared/services/auth.service';
-
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material';
-
+import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AlertsService } from 'src/app/shared/alerts/alerts.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AlertAction } from 'src/app/shared/alerts/alerts.common';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
+  selector: 'doctor-form',
+  templateUrl: './doctor-form.html',
+  styleUrls: ['./doctor-form.css']
 })
-export class SignUpComponent implements OnInit {
+export class DoctorFormComponent implements OnInit {
 
   theForm: FormGroup;
-  patient_id: string;
+  doctor_id: string;
   inDialog: boolean;
 
   constructor(private fb: FormBuilder, 
@@ -37,20 +36,20 @@ export class SignUpComponent implements OnInit {
       address: [null],
     });
 
-    this.patient_id = null;
+    this.doctor_id = null;
    
    }
 
   ngOnInit() {
-    if (this.patient_id !== null)
+    if (this.doctor_id !== null)
     {
-      this.loadPatientData();
+      this.loadDoctorData();
     }
   }
 
-  loadPatientData()
+  loadDoctorData()
   {
-    this.apiService.getPatient(this.patient_id).subscribe( response => {
+    this.apiService.getPatient(this.doctor_id).subscribe( response => {
       this.theForm.patchValue(response);
     })
   }
@@ -93,10 +92,10 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.patient_id !== null)
+    if (this.doctor_id !== null)
     {
-      this.apiService.updatePatient(this.patient_id, this.theForm.value).subscribe( response => {
-        this.dialogRef.close({ editPatient: true });
+      this.apiService.updatePatient(this.doctor_id, this.theForm.value).subscribe( response => {
+        this.dialogRef.close({ editDoctor: true });
 
       }, (error: HttpErrorResponse) => {
         AlertsService.error('Error', error.error);
@@ -106,31 +105,11 @@ export class SignUpComponent implements OnInit {
     {
       const formData = this.getChangedProperties(this.theForm);
       this.apiService.addPatient(formData).subscribe( (response) => {
+        console.log('Doctor added...', response);
 
-        if (this.inDialog) {
-          this.dialogRef.close( { addPatient: true });
-        }else{
-          const token = response.headers.get('x-auth-token')
-          const decodedToken = new JwtHelperService().decodeToken(token);
-          this.authService.user_name.next(decodedToken.name);
-    
-          if (token)
-          {
-            localStorage.setItem('token', token);
-          }
-    
-          AlertsService.success('Success', 'Patient Created.').subscribe((resp: AlertAction) => {
-            if(resp.positive)
-            {
-              this.router.navigate(['/home']);
-            }
-          });
-        }
       }, (error: HttpErrorResponse) => {
         AlertsService.error(error.statusText, error.error);
       })
-    }
-    
+    } 
   }
-
 }

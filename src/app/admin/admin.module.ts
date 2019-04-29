@@ -7,10 +7,12 @@ import { CategoriesListComponent } from './components/categories-list/categories
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { MaterialModule } from '../material-components/material-components.module';
 import { adminAuthGuard } from '../shared/services/adminAuthGuard.service';
+import { DoctorFormComponent } from './components/doctor-form/doctor.form';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes =  [
   { path: "admin", component: AdminpanelComponent, canActivate: [adminAuthGuard] },
-  { path: "doctors", component: DoctorsListComponent, canActivate: [adminAuthGuard] },
+  { path: "all_doctors", component: DoctorsListComponent, canActivate: [adminAuthGuard] },
   { path: "categories", component: CategoriesListComponent, canActivate: [adminAuthGuard]},
   { path: "patients", component: PatientListComponent, canActivate: [adminAuthGuard] },
 
@@ -21,11 +23,13 @@ const routes: Routes =  [
   declarations: [AdminpanelComponent, 
     DoctorsListComponent,
     CategoriesListComponent,
-    PatientListComponent],
+    PatientListComponent,
+    DoctorFormComponent],
 
 
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes),
   ]

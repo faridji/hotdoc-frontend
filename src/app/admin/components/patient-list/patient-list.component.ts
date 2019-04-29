@@ -46,7 +46,6 @@ export class PatientListComponent implements OnInit {
     this.showRowActions = true;
     this.selectedPatient = row;
     this.selectedRowIdx = row._id;
-
   }
 
   onTableRefresh()
@@ -56,10 +55,21 @@ export class PatientListComponent implements OnInit {
   }
 
   onAdd(): void {
-    const dialog = this.dialog.open(SignUpComponent, {
+    const dialogRef = this.dialog.open(SignUpComponent, {
       width: '50vw',
       minWidth: '50vw'
     });
+
+    dialogRef.componentInstance.inDialog = true;
+
+    dialogRef.afterClosed().subscribe(response => {
+      if (response.addPatient)
+      {
+        AlertsService.success('Create', 'Patient Successfully Added.').subscribe( resp => {
+          if (resp.positive) this.onTableRefresh();
+        })
+      }
+    })
   }
 
   onUpdate(): void {
@@ -70,7 +80,7 @@ export class PatientListComponent implements OnInit {
     dialogRef.componentInstance.patient_id = this.selectedPatient._id;
 
     dialogRef.afterClosed().subscribe(response => {
-      if (response.edit)
+      if (response.editPatient)
       {
         AlertsService.success('Updated', 'Patient Successfully Updated.').subscribe( resp => {
           if (resp.positive) this.onTableRefresh();

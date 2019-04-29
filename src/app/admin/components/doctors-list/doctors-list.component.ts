@@ -4,6 +4,7 @@ import { HotDocApiService } from 'src/app/shared/services/data.service';
 import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DoctorFormComponent } from '../doctor-form/doctor.form';
 
 @Component({
   selector: 'app-doctors-list',
@@ -52,27 +53,27 @@ export class DoctorsListComponent implements OnInit {
   }
 
   onAdd(): void {
-    const dialog = this.dialog.open(SignUpComponent, {
+    this.dialog.open(DoctorFormComponent, {
       width: '50vw',
       minWidth: '50vw'
     });
   }
 
   onUpdate(): void {
-    const dialogRef = this.dialog.open(SignUpComponent, {
+    const dialogRef = this.dialog.open(DoctorFormComponent, {
       width: '50vw',
       minWidth: '50vw'
     });
-    dialogRef.componentInstance.patient_id = this.selectedDoctor._id;
+    dialogRef.componentInstance.doctor_id = this.selectedDoctor._id;
 
     dialogRef.afterClosed().subscribe(response => {
       if (response.edit)
       {
-        AlertsService.success('Updated', 'Patient Successfully Updated.').subscribe( resp => {
+        AlertsService.success('Updated', 'Doctor Successfully Updated.').subscribe( resp => {
           if (resp.positive) this.onTableRefresh();
         })
       }
-    })
+    });
   }
 
   onDelete(): void {
