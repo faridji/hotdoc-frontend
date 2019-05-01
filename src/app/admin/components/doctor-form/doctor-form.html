@@ -1,54 +1,93 @@
-<form [formGroup]="theForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center center">
-  <div fxLayout="row wrap" fxFlex="100">
-      <h1 fxFlex="100">Create new Doctor</h1>
-      <mat-form-field fxFlex="100">
-          <input matInput formControlName="name" type="text" placeholder="Username">
-          <mat-error *ngIf="name.hasError('required')">user name is <strong>required</strong></mat-error>
-      </mat-form-field>
+<form fxLayout="row wrap" [formGroup]="theForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center center">
+    <div fxFlex="100" fxLayout="row" mat-dialog-title fxLayoutAlign="space-between center">
+        <h2>Create new Doctor</h2>
+        <mat-icon style="cursor: pointer;" (click)="onCancel()">close</mat-icon>
+    </div>
 
-      <mat-form-field fxFlex="100">
-          <input matInput formControlName="email" type="email" placeholder="email">
-          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-              Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="email.hasError('required')">
-              Email is <strong>required</strong>
-          </mat-error>
-      </mat-form-field>
+    <div fxLayout="row wrap" fxFlex="100" mat-dialog-content>
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="name" type="text" placeholder="Username">
+            <mat-error *ngIf="name.hasError('required')">user name is <strong>required</strong></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="email" type="email" placeholder="email">
+            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="password" type="password" placeholder="password">
+            <mat-error *ngIf="password.hasError('required')">password is <strong>required</strong></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100" style="margin-bottom: 10px">
+            <input matInput formControlName="mob_number" type="text" placeholder="mobile number">
+            <mat-hint>format:03439295108 (without dash)</mat-hint>
+            <mat-error *ngIf="mob_number.hasError('required')">
+                mobile number is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="mob_number.hasError('minlength') || mob_number.hasError('maxlength')">
+                mobile number must be 11 digits
+            </mat-error>
+    
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <mat-label>Select Education</mat-label>
+            <mat-select formControlName="education" multiple>
+                <mat-option *ngFor="let deg of degrees" [value]="deg">{{deg}}</mat-option>
+            </mat-select>
 
-      <mat-form-field fxFlex="100">
-          <input matInput formControlName="password" type="password" placeholder="password">
-          <mat-error *ngIf="password.hasError('required')">password is <strong>required</strong></mat-error>
-      </mat-form-field>
+            <mat-error *ngIf="education.hasError('required')">
+                Education is required
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <mat-label>Select Department</mat-label>
+            <mat-select formControlName="department" [value]="depts[0]">
+                <mat-option *ngFor="let dept of depts" [value]="dept">{{dept}}</mat-option>
+            </mat-select>
+    
+            <mat-error *ngIf="dept.hasError('required')">
+                Department is required
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <mat-label>Select Experience</mat-label>
+            <mat-select formControlName="experience">
+                <mat-option *ngFor="let exp of experiences" [value]="exp.value">{{exp.key}}</mat-option>
+            </mat-select>
+    
+            <mat-error *ngIf="experience.hasError('required')">
+                Experience is required
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="age" type="number" placeholder="Age">
+            <mat-error *ngIf="age.hasError('min')">age should be greater than 0.</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <textarea matInput formControlName="address" placeholder="Address"></textarea>
+        </mat-form-field>
+    
+        <!-- <mat-form-field>
+            <input placeholder="Upload image" formControlName="image" type="file">
+        </mat-form-field> -->
+    </div>
 
-      <mat-form-field fxFlex="100">
-          <input matInput formControlName="mob_number" type="text" placeholder="mobile number">
-          <mat-hint>format:03439295108 (without dash)</mat-hint>
-          <mat-error *ngIf="mob_number.hasError('required')">
-              mobile number is <strong>required</strong>
-          </mat-error>
-          <mat-error *ngIf="mob_number.hasError('minlength') || mob_number.hasError('maxlength')">
-              mobile number must be 11 digits
-          </mat-error>
-
-      </mat-form-field>
-
-      <mat-form-field fxFlex="100">
-          <input matInput formControlName="age" type="number" placeholder="Age">
-          <mat-error *ngIf="age.hasError('min')">age should be greater than 0.</mat-error>
-      </mat-form-field>
-
-      <mat-form-field fxFlex="100">
-          <textarea matInput formControlName="address" placeholder="Address"></textarea>
-      </mat-form-field>
-
-      <!-- <mat-form-field>
-          <input placeholder="Upload image" formControlName="image" type="file">
-      </mat-form-field> -->
-
-      <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" style="margin-top: 10px">
-          <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid || theForm.pristine">Save</button>
-          <button *ngIf="patient_id || inDialog" type="button" mat-raised-button (click)="onCancel()">Cancel</button>
-      </div>
-  </div>
+    <div fxFlex fxLayout="row" mat-dialog-actions fxLayoutAlign="space-between start" style="margin-top: 10px">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid || theForm.pristine">Save</button>
+        <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+    </div>
 </form>
+          
+     

@@ -52,9 +52,18 @@ export class DoctorsListComponent implements OnInit {
   }
 
   onAdd(): void {
-    this.dialog.open(DoctorFormComponent, {
+    const dialogRef = this.dialog.open(DoctorFormComponent, {
       width: '50vw',
       minWidth: '50vw'
+    });
+
+    dialogRef.afterClosed().subscribe(response => {
+      if (response.addDoctor)
+      {
+        AlertsService.success('Created', 'Doctor Successfully Added.').subscribe( resp => {
+          if (resp.positive) this.onTableRefresh();
+        })
+      }
     });
   }
 
@@ -66,7 +75,7 @@ export class DoctorsListComponent implements OnInit {
     dialogRef.componentInstance.doctor_id = this.selectedDoctor._id;
 
     dialogRef.afterClosed().subscribe(response => {
-      if (response.edit)
+      if (response.editDoctor)
       {
         AlertsService.success('Updated', 'Doctor Successfully Updated.').subscribe( resp => {
           if (resp.positive) this.onTableRefresh();
