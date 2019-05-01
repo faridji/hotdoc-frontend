@@ -9,15 +9,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-    const user = this.authService.getCurrentUser();
-    if (user)
-    {
-      this.authService.user_name.next(user.name);
-      if (user.isAdmin)
-        this.router.navigate(['admin']);
-    }
   }
 }

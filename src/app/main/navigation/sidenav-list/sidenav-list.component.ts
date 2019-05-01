@@ -8,15 +8,15 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class SidenavListComponent implements OnInit {
   @Output() sidenavClose = new EventEmitter();
-  loggedInUserName: string;
+  user: User;
 
   constructor(private authService: AuthService) { 
-    this.loggedInUserName = null;
+    this.user = null;
   }
 
   ngOnInit() {
-    this.authService.user_name.subscribe( response => {
-      this.loggedInUserName = response;
+    this.authService.user.subscribe( (response: User) => {
+      this.user = response;
     })
   }
 

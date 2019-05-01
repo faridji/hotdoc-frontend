@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  user_name: BehaviorSubject<null>;
+  user: BehaviorSubject<{}>;
   baseUrl: string;
 
   constructor(private http: HttpClient, private router: Router) { 
     this.baseUrl = "http://localhost:3000";
-    this.user_name = new BehaviorSubject(null);
+    this.user = new BehaviorSubject({});
   }
 
   getCurrentUser()
@@ -42,7 +42,7 @@ export class AuthService {
   logout()
   {
     localStorage.removeItem('token');
-    this.user_name.next(null);
+    this.user.next(null);
     this.router.navigate(['/home']);
   }
 }

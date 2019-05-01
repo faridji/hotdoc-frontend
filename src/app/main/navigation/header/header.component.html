@@ -5,12 +5,12 @@
       </button>
   </div>
  
-  <div style="margin-right: 15px;">
+  <div style="margin-right: 15px;" *ngIf="!user?.isAdmin">
     <a routerLink="/home">HotDoc</a>
   </div>
 
   <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
-        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items" *ngIf="!user?.isAdmin">
             <li>
                 <a routerLink="/doctors">Doctors</a>
             </li>
@@ -23,7 +23,7 @@
         </ul>
   </div>
 
-  <div *ngIf="!loggedInUserName" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+  <div *ngIf="!user" fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
                 <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -44,12 +44,12 @@
         </ul>
   </div>
 
-  <div *ngIf="loggedInUserName" [matMenuTriggerFor]="loggedInUserMenu" 
+  <div *ngIf="user" [matMenuTriggerFor]="loggedInUserMenu" 
         fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center"
         style="cursor: pointer;">
 
         <img src="/assets/images/avatar.jpg" class="round-image" alt="user">
-        <span>{{ loggedInUserName | titlecase  }}</span>
+        <span>{{ user.name | titlecase  }}</span>
 
         <mat-menu align="end" #loggedInUserMenu="matMenu">
             <button mat-menu-item routerLink="login-main-page">
@@ -67,7 +67,4 @@
        
         </mat-menu>
    </div>
-
-   
-
 </mat-toolbar>

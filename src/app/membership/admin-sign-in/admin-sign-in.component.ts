@@ -38,7 +38,7 @@ export class AdminSignInComponent implements OnInit {
 
       const token = response['token'];
       const decodedToken = new JwtHelperService().decodeToken(token);
-      this.authService.user_name.next(decodedToken.name);
+      this.authService.user.next(decodedToken);
 
       if (token)
       {
@@ -46,9 +46,8 @@ export class AdminSignInComponent implements OnInit {
 
         this.router.navigate(['admin']);
       }
-        
       }, (error: HttpErrorResponse) => {
         AlertsService.error(error.statusText, error.error);
-      })
+    })
   }
 }

@@ -37,9 +37,6 @@ export class PatientSignInComponent implements OnInit {
     this.authService.login(this.theForm.value, "patient").subscribe( (response) => {
 
       const token = response['token'];
-      const decodedToken = new JwtHelperService().decodeToken(token);
-      this.authService.user_name.next(decodedToken.name);
-
       if (token)
         localStorage.setItem('token', token);
         

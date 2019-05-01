@@ -11,13 +11,13 @@ export class HeaderComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  loggedInUserName: string;
+  user: User;
   
   constructor(private router: Router, private authService: AuthService) { }
  
   ngOnInit() {
-    this.authService.user_name.subscribe( response => {
-      this.loggedInUserName = response;
+    this.authService.user.subscribe( (response: User) => {
+      this.user = response;
     })
   }
  

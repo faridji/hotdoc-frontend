@@ -15,10 +15,10 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const user = this.authService.getCurrentUser();
+    const user: User = this.authService.getCurrentUser();
     if (user)
     {
-      this.authService.user_name.next(user.name);
+      this.authService.user.next(user);
       if (user.isAdmin)
         this.router.navigate(['admin']);
     }
