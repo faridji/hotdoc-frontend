@@ -13,6 +13,7 @@ import { MaterialModule } from '../material-components/material-components.modul
 import { LayoutComponent } from './layout/layout.component';
 import { DoctorDetailComponent } from './doctors/detail/detail.component';
 import { FooterComponent } from './navigation/footer/footer.component';
+import { patientAuthGuard } from '../shared/services/patientAuthGuard.service';
 
 
 const routes: Routes =  [
@@ -22,7 +23,7 @@ const routes: Routes =  [
   { path: "doctors", component: DoctorsComponent },
   { path: "doctors/:id", component: DoctorDetailComponent},
   { path: "departments", component: DepartmentsComponent },
-  { path: "appointments", component: AppointmentsComponent },
+  { path: "appointments", component: AppointmentsComponent, canActivate: [patientAuthGuard] },
   { path: "about", component: AboutComponent },
 ]
 

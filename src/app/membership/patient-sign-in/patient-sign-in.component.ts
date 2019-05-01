@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AlertAction } from 'src/app/shared/alerts/alerts.common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-patient-sign-in',
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class PatientSignInComponent implements OnInit {
 
   theForm: FormGroup;
-  constructor(private authService: AuthService, private router: Router) { 
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { 
     this.theForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
@@ -46,7 +46,9 @@ export class PatientSignInComponent implements OnInit {
       AlertsService.success('Login', 'Patient Login successfully.').subscribe((resp: AlertAction) => {
         if(resp.positive)
         {
-          this.router.navigate(['/home']);
+          let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+          returnUrl = returnUrl ? returnUrl : 'home';
+          this.router.navigate([returnUrl]);
         }
       });
       }, (error: HttpErrorResponse) => {
