@@ -31,7 +31,7 @@ export class DoctorFormComponent implements OnInit {
       password: ['', Validators.required],
       mob_number: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)] ],
       department: ['', [Validators.required]],
-      education: ['', Validators.required],
+      education: [ [], Validators.required],
       experience: ['', [Validators.required]],
       age: [null, Validators.min(0)],
       address: [null],

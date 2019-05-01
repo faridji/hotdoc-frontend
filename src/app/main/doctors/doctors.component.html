@@ -7,7 +7,7 @@
           <div class="frontside">
               <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
                         fxFlex="100" style="color: #007b5e;">
-                  <img class="round-img" src="{{ doctor.image }}" alt="image">
+                  <img class="round-img" src="{{ doctor.image ? doctor.image : '/assets/images/avatar.jpg' }}" alt="image">
                   <h3>{{ doctor.name }}</h3>
                   <mat-icon class="add-icon">add_box</mat-icon>
               </mat-card>
@@ -17,13 +17,13 @@
                         fxFlex="fxFlex" class="card">
                 <h4 class="card-title">{{ doctor.name }}</h4>
                   <div fxLayout="row wrap">
-                    <ng-container *ngFor="let degree of doctor.degrees; let last=last">
-                        <p class="card-text" >{{ degree.title }}</p>
+                    <ng-container *ngFor="let degree of doctor.education; let last=last">
+                        <p class="card-text" >{{ degree }}</p>
                         <mat-divider *ngIf="!last" [vertical]="true"></mat-divider>
                     </ng-container>
                   </div>
 
-                  <button type="button" mat-raised-button class="primary-button" (click)="doctorDetail(doctor.id)">Detail</button>
+                  <button type="button" mat-raised-button class="primary-button" (click)="doctorDetail(doctor._id)">Detail</button>
             </mat-card>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
 
 @Component({
   selector: 'doctor-detail',
@@ -10,7 +11,7 @@ export class DoctorDetailComponent implements OnInit {
 
   id: any;
   doctor_details : any;
-  constructor(private route: ActivatedRoute, private router: Router) 
+  constructor(private route: ActivatedRoute, private router: Router, private doctorService: DoctorService) 
   { 
     this.doctor_details = {};
   }
@@ -18,15 +19,9 @@ export class DoctorDetailComponent implements OnInit {
   ngOnInit() 
   {
     this.id = this.route.snapshot.paramMap.get('id');
-    
-    this.doctor_details = {
-      name: 'Dr Dilawer khan',
-      image: '/assets/images/doctor2.jpg',
-      education: ['MBBS', 'FCPS'],
-      experience: 4,
-      email: 'dilawer_mbbs@gmail.com',
-      mob_number: '03439295109'
-    }
+    this.doctorService.get(this.id).subscribe( resp => {
+      this.doctor_details = resp;
+    });
   }
 
   makeAppointment()

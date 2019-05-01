@@ -3,7 +3,7 @@
   <mat-card fxFlex="30" *ngIf="doctor_details">
     <mat-card-content fxFlex fxLayout="row wrap">
       <h2 fxFlex="100" fxLayoutAlign="start" style="margin-bottom: 10px;">{{doctor_details.name}}</h2>
-      <img fxFlex="50" [src]="doctor_details.image" 
+      <img fxFlex="50" [src]="doctor_details.image ? doctor_details.image : '/assets/images/avatar.jpg'"  
             class="rounded_img" alt="doctor image" style="margin-bottom: 10px">
       <button fxFlex="100" mat-raised-button color="primary" (click)="makeAppointment()">Make Appointment</button>
     </mat-card-content>
@@ -65,4 +65,5 @@
 
     </mat-card-content>
   </mat-card>
+  
 </div>
