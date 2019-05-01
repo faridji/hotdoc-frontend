@@ -4,42 +4,34 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class HotDocApiService {
+export class GenericApiService {
 
-  baseUrl: string;
-
-  constructor(private http: HttpClient) 
+  constructor(private http: HttpClient, private url: string) 
   { 
-    this.baseUrl = "http://localhost:3000";
   }
 
-  getAllPatients()
+  getAll()
   {
-    return this.http.get(this.baseUrl + '/api/patients');
+    return this.http.get(this.url);
   }
 
-  getAllDoctors()
+  get(id: string)
   {
-    return this.http.get(this.baseUrl + '/api/doctors');
+    return this.http.get(this.url + '/' + id);
   }
 
-  getPatient(id: string)
+  add(postData: any) 
   {
-    return this.http.get(this.baseUrl + '/api/patients/' + id);
+    return this.http.post(this.url, postData, {observe: 'response'});
   }
 
-  addPatient(postData: any) 
+  update(id: any, formData)
   {
-    return this.http.post(this.baseUrl + '/api/patients', postData, {observe: 'response'});
+    return this.http.put(this.url + '/' + id, formData);
   }
 
-  updatePatient(id: any, formData)
+  delete(id: string)
   {
-    return this.http.put(this.baseUrl + '/api/patients/' + id, formData);
-  }
-
-  deletePatient(id: string)
-  {
-    return this.http.delete(this.baseUrl + '/api/patients/' + id);
+    return this.http.delete(this.url + '/' + id);
   }
 }

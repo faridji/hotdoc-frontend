@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HotDocApiService } from 'src/app/shared/services/data.service';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { MatTable, MatDialog } from '@angular/material';
 import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
+import { PatientService } from 'src/app/shared/services/patient.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class PatientListComponent implements OnInit {
   selectedRowIdx: string;
   loading: boolean;
   
-  constructor(private apiService: HotDocApiService, private dialog: MatDialog) { 
+  constructor(private apiService: PatientService, private dialog: MatDialog) { 
     this.patients = null;
     this.selectedPatient = null;
     this.showRowActions = false;
@@ -39,7 +39,7 @@ export class PatientListComponent implements OnInit {
 
   onLoadData()
   {
-    this.apiService.getAllPatients().subscribe( response => {
+    this.apiService.getAll().subscribe( response => {
       this.patients = response;
     });
   }
@@ -96,7 +96,7 @@ export class PatientListComponent implements OnInit {
     .subscribe( response => {
       if (response.positive)
       {
-        this.apiService.deletePatient(this.selectedPatient._id).subscribe( response => {
+        this.apiService.delete(this.selectedPatient._id).subscribe( response => {
           AlertsService.success('Delete', 'Patient Successfully deleted.').subscribe( resp => {
             if (resp.positive) {
               this.onTableRefresh();

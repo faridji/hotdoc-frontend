@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatDialog } from '@angular/material';
-import { HotDocApiService } from 'src/app/shared/services/data.service';
-import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DoctorFormComponent } from '../doctor-form/doctor.form';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
 
 @Component({
   selector: 'app-doctors-list',
@@ -21,7 +20,7 @@ export class DoctorsListComponent implements OnInit {
   displayedColumns: string[];
   showRowActions: boolean;
   
-  constructor(private apiService: HotDocApiService, private dialog: MatDialog) { 
+  constructor(private apiService: DoctorService, private dialog: MatDialog) { 
     this.displayedColumns = ['name', 'email', 'password', 'mob_number','education','department','experience','age'];
     this.doctors = null;
     this.selectedDoctor = null;
@@ -35,7 +34,7 @@ export class DoctorsListComponent implements OnInit {
 
   onLoadData()
   {
-    this.apiService.getAllDoctors().subscribe( response => {
+    this.apiService.getAll().subscribe( response => {
       this.doctors = response;
     });
   }
@@ -81,7 +80,7 @@ export class DoctorsListComponent implements OnInit {
     .subscribe( response => {
       if (response.positive)
       {
-        this.apiService.deletePatient(this.selectedDoctor._id).subscribe( response => {
+        this.apiService.delete(this.selectedDoctor._id).subscribe( response => {
           AlertsService.success('Delete', 'Doctor Successfully deleted.').subscribe( resp => {
             if (resp.positive) {
               this.onTableRefresh();

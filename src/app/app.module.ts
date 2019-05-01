@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HotDocApiService } from './shared/services/data.service';
 import { AdminModule } from './admin/admin.module';
 
 @NgModule({
@@ -29,7 +28,6 @@ import { AdminModule } from './admin/admin.module';
     RouterModule.forRoot([]),
 
   ],
-  providers: [HotDocApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

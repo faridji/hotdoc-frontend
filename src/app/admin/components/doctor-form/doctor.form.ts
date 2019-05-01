@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HotDocApiService } from 'src/app/shared/services/data.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material';
 import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { AlertAction } from 'src/app/shared/alerts/alerts.common';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
+
 
 @Component({
   selector: 'doctor-form',
@@ -22,12 +21,12 @@ export class DoctorFormComponent implements OnInit {
   inDialog: boolean;
 
   constructor(private fb: FormBuilder, 
-              private apiService: HotDocApiService,
+              private apiService: DoctorService,
               private authService: AuthService,
               private router: Router,
               private dialogRef: MatDialogRef<SignUpComponent>) 
   {
-    this.theForm = fb.group({
+    this.theForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -49,7 +48,7 @@ export class DoctorFormComponent implements OnInit {
 
   loadDoctorData()
   {
-    this.apiService.getPatient(this.doctor_id).subscribe( response => {
+    this.apiService.get(this.doctor_id).subscribe( response => {
       this.theForm.patchValue(response);
     })
   }
@@ -94,7 +93,7 @@ export class DoctorFormComponent implements OnInit {
   onSubmit() {
     if (this.doctor_id !== null)
     {
-      this.apiService.updatePatient(this.doctor_id, this.theForm.value).subscribe( response => {
+      this.apiService.update(this.doctor_id, this.theForm.value).subscribe( response => {
         this.dialogRef.close({ editDoctor: true });
 
       }, (error: HttpErrorResponse) => {
@@ -104,12 +103,12 @@ export class DoctorFormComponent implements OnInit {
     else 
     {
       const formData = this.getChangedProperties(this.theForm);
-      this.apiService.addPatient(formData).subscribe( (response) => {
+      this.apiService.add(formData).subscribe( (response) => {
         console.log('Doctor added...', response);
 
       }, (error: HttpErrorResponse) => {
         AlertsService.error(error.statusText, error.error);
-      })
+      });
     } 
   }
 }

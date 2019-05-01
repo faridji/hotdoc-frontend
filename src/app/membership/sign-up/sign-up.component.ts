@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { HotDocApiService } from 'src/app/shared/services/data.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { AlertAction } from 'src/app/shared/alerts/alerts.common';
@@ -9,6 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatDialogRef } from '@angular/material';
+import { PatientService } from 'src/app/shared/services/patient.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
   inDialog: boolean;
 
   constructor(private fb: FormBuilder, 
-              private apiService: HotDocApiService,
+              private apiService: PatientService,
               private authService: AuthService,
               private router: Router,
               private dialogRef: MatDialogRef<SignUpComponent>) 
@@ -50,7 +50,7 @@ export class SignUpComponent implements OnInit {
 
   loadPatientData()
   {
-    this.apiService.getPatient(this.patient_id).subscribe( response => {
+    this.apiService.get(this.patient_id).subscribe( response => {
       this.theForm.patchValue(response);
     })
   }
@@ -95,7 +95,7 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     if (this.patient_id !== null)
     {
-      this.apiService.updatePatient(this.patient_id, this.theForm.value).subscribe( response => {
+      this.apiService.update(this.patient_id, this.theForm.value).subscribe( response => {
         this.dialogRef.close({ editPatient: true });
 
       }, (error: HttpErrorResponse) => {
@@ -105,7 +105,7 @@ export class SignUpComponent implements OnInit {
     else 
     {
       const formData = this.getChangedProperties(this.theForm);
-      this.apiService.addPatient(formData).subscribe( (response) => {
+      this.apiService.add(formData).subscribe( (response) => {
 
         if (this.inDialog) {
           this.dialogRef.close( { addPatient: true });
