@@ -9,8 +9,8 @@
     </div>
   </div>
 
-
   <table fxFlex="100" mat-table [dataSource]="patients">
+
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -48,6 +48,14 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <ng-container matColumnDef="loading">
+      <th mat-header-cell *matHeaderCellDef colspan="100%" style="border-bottom-width: 0; padding: 0;">
+          <mat-progress-bar color="warn" mode="query" [style.opacity]="loading ? 1 : 0">
+          </mat-progress-bar>
+      </th>
+    </ng-container>
+
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
         style="cursor: pointer;" [class.selected]="selectedRowIdx == row._id" (click)="onRowClick(row)"></tr>
   </table>

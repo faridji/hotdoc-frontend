@@ -22,11 +22,13 @@ export class PatientListComponent implements OnInit {
   showRowActions: boolean;
 
   selectedRowIdx: string;
+  loading: boolean;
   
   constructor(private apiService: HotDocApiService, private dialog: MatDialog) { 
     this.patients = null;
     this.selectedPatient = null;
     this.showRowActions = false;
+    this.loading = true;
 
     this.selectedRowIdx = '';
   }

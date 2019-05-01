@@ -20,18 +20,19 @@ const routes: Routes =  [
 
 
 @NgModule({
-  declarations: [AdminpanelComponent, 
+  declarations: [
+    AdminpanelComponent, 
     DoctorsListComponent,
     CategoriesListComponent,
     PatientListComponent,
-    DoctorFormComponent],
-
-
+    DoctorFormComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes),
-  ]
+  ],
+  entryComponents: [DoctorFormComponent]
 })
 export class AdminModule { }
