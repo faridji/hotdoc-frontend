@@ -38,7 +38,11 @@ export class PatientSignInComponent implements OnInit {
 
       const token = response['token'];
       if (token)
+      {
         localStorage.setItem('token', token);
+        const decodedToken = new JwtHelperService().decodeToken(token);
+        this.authService.user.next(decodedToken);
+      }
         
       AlertsService.success('Login', 'Patient Login successfully.').subscribe((resp: AlertAction) => {
         if(resp.positive)

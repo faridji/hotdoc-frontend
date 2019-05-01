@@ -21,14 +21,14 @@ export class AuthService {
 
   getCurrentUser()
   {
-      const token = localStorage.getItem('token');
-      if (token)
-      {
-        const helper = new JwtHelperService();
-        const decodedToken = helper.decodeToken(token);
-        return decodedToken;
-      }
-      return null;
+    const token = localStorage.getItem('token');
+    if (token)
+    {
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(token);
+      return decodedToken;
+    }
+    return null;
   }
 
   login(credentials: any, userType: string)
@@ -42,7 +42,7 @@ export class AuthService {
   logout()
   {
     localStorage.removeItem('token');
-    this.user.next(null);
+    this.user.next({});
     this.router.navigate(['/home']);
   }
 }

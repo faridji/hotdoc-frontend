@@ -112,7 +112,7 @@ export class SignUpComponent implements OnInit {
         }else{
           const token = response.headers.get('x-auth-token')
           const decodedToken = new JwtHelperService().decodeToken(token);
-          this.authService.user_name.next(decodedToken.name);
+          this.authService.user.next(decodedToken);
     
           if (token)
           {
