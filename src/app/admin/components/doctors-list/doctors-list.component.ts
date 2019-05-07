@@ -19,6 +19,8 @@ export class DoctorsListComponent implements OnInit {
   selectedDoctor: any;
   displayedColumns: string[];
   showRowActions: boolean;
+
+  loading: boolean;
   
   constructor(private apiService: DoctorService, private dialog: MatDialog) { 
     this.displayedColumns = ['name', 'email', 'password', 'mob_number','education','department','experience','age'];
@@ -26,6 +28,7 @@ export class DoctorsListComponent implements OnInit {
     this.selectedDoctor = null;
     this.selectedRowIdx = '';
     this.showRowActions = false;
+    this.loading = false;
   }
 
   ngOnInit() {
@@ -34,7 +37,9 @@ export class DoctorsListComponent implements OnInit {
 
   onLoadData()
   {
+    this.loading = true;
     this.apiService.getAll().subscribe( response => {
+      this.loading = false;
       this.doctors = response;
     });
   }

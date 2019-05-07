@@ -28,7 +28,7 @@ export class PatientListComponent implements OnInit {
     this.patients = null;
     this.selectedPatient = null;
     this.showRowActions = false;
-    this.loading = true;
+    this.loading = false;
 
     this.selectedRowIdx = '';
   }
@@ -39,8 +39,10 @@ export class PatientListComponent implements OnInit {
 
   onLoadData()
   {
+    this.loading = true;
     this.apiService.getAll().subscribe( response => {
       this.patients = response;
+      this.loading = false;
     });
   }
 
