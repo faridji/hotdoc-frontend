@@ -1,6 +1,7 @@
 <form fxLayout="row wrap" [formGroup]="theForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center center">
     <div fxFlex="100" fxLayout="row" mat-dialog-title fxLayoutAlign="space-between center">
-        <h2>Create new Doctor</h2>
+        <h2 *ngIf="!doctor_id">Add Doctor</h2>
+        <h2 *ngIf="doctor_id">Update Doctor</h2>
         <mat-icon style="cursor: pointer;" (click)="onCancel()">close</mat-icon>
     </div>
 

@@ -64,7 +64,7 @@ export class DeptListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(response => {
-      if (response.addDept)
+      if (response.addDepartment)
       {
         AlertsService.success('Created', 'Department Successfully Added.').subscribe( resp => {
           if (resp.positive) this.onTableRefresh();
@@ -81,7 +81,7 @@ export class DeptListComponent implements OnInit {
     dialogRef.componentInstance.dept_id = this.selectedDepartment._id;
 
     dialogRef.afterClosed().subscribe(response => {
-      if (response.editDept)
+      if (response.editDepartment)
       {
         AlertsService.success('Updated', 'Department Successfully Updated.').subscribe( resp => {
           if (resp.positive) this.onTableRefresh();

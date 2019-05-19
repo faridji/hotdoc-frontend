@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
-import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
-import { DoctorService } from 'src/app/shared/services/doctor.service';
 import { DeptService } from 'src/app/shared/services/dept.service';
 
 

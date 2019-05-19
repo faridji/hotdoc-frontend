@@ -1,6 +1,7 @@
 <form fxLayout="row wrap" [formGroup]="theForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center center">
     <div fxFlex="100" fxLayout="row" mat-dialog-title fxLayoutAlign="space-between center">
-        <h2>Create new Department</h2>
+        <h2 *ngIf="!dept_id">Add Department</h2>
+        <h2 *ngIf="dept_id">Update Department</h2>
         <mat-icon style="cursor: pointer;" (click)="onCancel()">close</mat-icon>
     </div>
 
@@ -17,8 +18,8 @@
     </div>
 
     <div fxFlex fxLayout="row" mat-dialog-actions fxLayoutAlign="space-between start" style="margin-top: 10px">
-        <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid || theForm.pristine">Save</button>
         <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid || theForm.pristine">Save</button>
     </div>
 </form>
           
