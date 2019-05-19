@@ -2,30 +2,30 @@
   <mat-card fxFlex="32">
     <mat-card-header>Doctors</mat-card-header>
     <mat-card-content>
-      <h2 style="color: red; margin-top: 20px; font-size: 30px;">10</h2>
+      <h2 style="color: red; margin-top: 20px; font-size: 30px;">{{getAllCounts.doctors}}</h2>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" fxFlex="100">View Detail</button>
+      <button mat-raised-button color="primary" fxFlex="100" routerLink="all_doctors">View Detail</button>
     </mat-card-actions>
   </mat-card>
 
   <mat-card fxFlex="32">
     <mat-card-header>Patients</mat-card-header>
     <mat-card-content>
-      <h2 style="color: red; margin-top: 20px; font-size: 30px;">5</h2>
+      <h2 style="color: red; margin-top: 20px; font-size: 30px;">{{getAllCounts.patients}}</h2>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" fxFlex="100">View Detail</button>
+      <button mat-raised-button color="primary" fxFlex="100" routerLink="patients">View Detail</button>
     </mat-card-actions>
   </mat-card>
 
   <mat-card fxFlex="32">
       <mat-card-header>Departments</mat-card-header>
       <mat-card-content>
-        <h2 style="color: red; margin-top: 20px; font-size: 30px;">2</h2>
+        <h2 style="color: red; margin-top: 20px; font-size: 30px;">{{getAllCounts.depts}}</h2>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" fxFlex="100">View Detail</button>
+        <button mat-raised-button color="primary" fxFlex="100" routerLink="categories">View Detail</button>
       </mat-card-actions>
   </mat-card>
 </div>

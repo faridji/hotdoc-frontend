@@ -16,9 +16,8 @@ const routes: Routes =  [
   { path: "admin", component: AdminpanelComponent, canActivate: [adminAuthGuard] },
   { path: "dashboard", component: DashboardComponent, canActivate: [adminAuthGuard]},
   { path: "all_doctors", component: DoctorsListComponent, canActivate: [adminAuthGuard] },
-  { path: "departments", component: DeptListComponent, canActivate: [adminAuthGuard]},
+  { path: "categories", component: DeptListComponent, canActivate: [adminAuthGuard]},
   { path: "patients", component: PatientListComponent, canActivate: [adminAuthGuard] },
-
 ]
 
 
