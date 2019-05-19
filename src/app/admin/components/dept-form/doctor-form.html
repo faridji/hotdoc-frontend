@@ -1,0 +1,25 @@
+<form fxLayout="row wrap" [formGroup]="theForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center center">
+    <div fxFlex="100" fxLayout="row" mat-dialog-title fxLayoutAlign="space-between center">
+        <h2>Create new Department</h2>
+        <mat-icon style="cursor: pointer;" (click)="onCancel()">close</mat-icon>
+    </div>
+
+    <div fxLayout="row wrap" fxFlex="100" mat-dialog-content>
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="name" type="text" placeholder="Name">
+            <mat-error *ngIf="name.hasError('required')">Name is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="description" type="text" placeholder="description">
+            <mat-error *ngIf="name.hasError('required')">Description is <strong>required</strong></mat-error>
+        </mat-form-field>    
+    </div>
+
+    <div fxFlex fxLayout="row" mat-dialog-actions fxLayoutAlign="space-between start" style="margin-top: 10px">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid || theForm.pristine">Save</button>
+        <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+    </div>
+</form>
+          
+     

@@ -12,7 +12,7 @@
   <div fxFlex="78" fxLayout="row wrap">
 
     <ng-container *ngIf="selectedMenu === 'Dashboard'">
-      <h1>Dashboard Selected</h1>
+      <dashboard fxFlex="100"></dashboard>
     </ng-container>
 
     <ng-container *ngIf="selectedMenu === 'Patients'">
@@ -24,7 +24,7 @@
     </ng-container>
 
     <ng-container *ngIf="selectedMenu === 'Departments'">
-      <h1>Departments Selected</h1>
+      <app-dept-list fxFlex="100"></app-dept-list>
     </ng-container>
   </div>
 </div>
