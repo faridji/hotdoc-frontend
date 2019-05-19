@@ -1,6 +1,8 @@
 <div fxFlex="100" fxLayout="row wrap">
   <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center">
     <h1 fxFlex="30">Doctors</h1>
+    <!-- <button *ngIf="doctors.length == 0" mat-raised-button color="primary" (click)="onAdd()"><mat-icon>add</mat-icon> Doctor</button> -->
+
     <div fxFlex="69" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end end"  *ngIf="showRowActions">
       <button mat-raised-button color="primary" (click)="onAdd()"><mat-icon>add</mat-icon> Doctor</button>
       <button mat-raised-button color="accent" (click)="onUpdate()"><mat-icon>edit</mat-icon> Doctor</button>

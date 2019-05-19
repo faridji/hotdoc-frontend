@@ -8,6 +8,6 @@ import { HttpClient } from '@angular/common/http';
 
 export class DoctorService extends GenericApiService{
   constructor(http: HttpClient) {
-    super(http, 'http://localhost:3000/api/Doctors')
+    super(http, 'https://hotdocv1-0.herokuapp.com/api/Doctors')
   }
 }

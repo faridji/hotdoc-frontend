@@ -15,7 +15,7 @@ export class AuthService {
   baseUrl: string;
 
   constructor(private http: HttpClient, private router: Router) { 
-    this.baseUrl = "http://localhost:3000";
+    this.baseUrl = "https://hotdocv1-0.herokuapp.com";
     this.user = new BehaviorSubject({});
   }
 

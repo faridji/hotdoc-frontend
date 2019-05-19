@@ -8,7 +8,7 @@ export class DashboardApiService {
 
   private url: string;
   constructor(private http: HttpClient) { 
-    this.url = 'http://localhost:3000/api/dashboard';
+    this.url = 'https://hotdocv1-0.herokuapp.com/api/dashboard';
   }
 
 
