@@ -129,8 +129,6 @@ export class SignUpComponent implements OnInit {
       }, (error: HttpErrorResponse) => {
         AlertsService.error(error.statusText, error.error);
       })
-    }
-    
+    } 
   }
-
 }

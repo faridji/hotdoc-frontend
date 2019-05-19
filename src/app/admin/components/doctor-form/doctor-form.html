@@ -51,8 +51,8 @@
     
         <mat-form-field fxFlex="100">
             <mat-label>Select Department</mat-label>
-            <mat-select formControlName="department" [value]="depts[0]">
-                <mat-option *ngFor="let dept of depts" [value]="dept">{{dept}}</mat-option>
+            <mat-select formControlName="department" [value]="depts[0]?.name">
+                <mat-option *ngFor="let dept of depts" [value]="dept?.name">{{dept?.name}}</mat-option>
             </mat-select>
     
             <mat-error *ngIf="dept.hasError('required')">

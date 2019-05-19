@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   user: BehaviorSubject<{}>;
-  baseUrl: string;
+  private baseUrl: string;
 
   constructor(private http: HttpClient, private router: Router) { 
     this.baseUrl = "https://hotdocv1-0.herokuapp.com";

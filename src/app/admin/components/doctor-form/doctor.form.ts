@@ -5,6 +5,7 @@ import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { DeptService } from 'src/app/shared/services/dept.service';
 
 
 @Component({
@@ -17,12 +18,13 @@ export class DoctorFormComponent implements OnInit {
   theForm: FormGroup;
   doctor_id: string;
 
-  depts: any[];
+  depts: any;
   degrees: any[];
   experiences: any[];
 
   constructor(private fb: FormBuilder, 
               private apiService: DoctorService,
+              private deptService: DeptService,
               private dialogRef: MatDialogRef<SignUpComponent>) 
   {
     this.theForm = this.fb.group({
@@ -46,8 +48,12 @@ export class DoctorFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.depts = ['Cardiology', 'Pediatric'];
     this.degrees = ['MBBS', 'FCPS'];
+
+    this.deptService.getAll().subscribe( resp => {
+      this.depts = resp;
+    });
+    
     this.experiences = [
       {key: '1 Year', value: 1},
       {key: '2 Year', value: 2},
