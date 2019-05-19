@@ -7,7 +7,7 @@
           <div class="frontside">
               <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
                         fxFlex="100" style="color: #007b5e;">
-                  <img class="round-img" src="{{ department.image }}" alt="image">
+                  <img class="round-img" src="{{ department.picture ? department.picture : '/assets/images/avatar.jpg' }}" alt="image">
                   <h3>{{ department.name }}</h3>
               </mat-card>
           </div>
@@ -15,7 +15,7 @@
             <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
                         fxFlex="fxFlex" class="card">
                 <h4 class="card-title">{{ department.name }}</h4>
-                <p class="card-text" >{{ department.detail }}</p>
+                <p class="card-text" >{{ department.description }}</p>
             </mat-card>
           </div>
         </div>
