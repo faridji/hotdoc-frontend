@@ -17,19 +17,22 @@ export class DeptListComponent implements OnInit {
   selectedRowIdx: string;
 
   departments: any;
-  selectedDepartment: any;
   displayedColumns: string[];
-  showRowActions: boolean;
+  rowActions: any[];
 
   loading: boolean;
   
   constructor(private apiService: DeptService, private dialog: MatDialog) { 
-    this.displayedColumns = ['name', 'description'];
+    this.displayedColumns = ['name', 'description', 'actions'];
     this.departments = null;
-    this.selectedDepartment = null;
     this.selectedRowIdx = '';
-    this.showRowActions = false;
     this.loading = false;
+
+    this.rowActions = [
+      { title: 'Edit', icon: 'edit', action: 'OnEdit' },
+      { title: 'Delete', icon: 'delete', action: 'OnDelete' },
+
+    ];
   }
 
   ngOnInit() {
@@ -45,11 +48,31 @@ export class DeptListComponent implements OnInit {
     });
   }
 
-  onRowClick(row: any){
-    this.showRowActions = true;
-    this.selectedDepartment = row;
-    this.selectedRowIdx = row._id;
+  onReload()
+  {
+    this.onLoadData();
   }
+
+  onRowAction(ev: any, row: any, rowAction: RowAction)
+  {
+      console.log('row', row);
+      this.selectedRowIdx = row._id;
+
+      if (rowAction.action === 'OnEdit')
+      {
+        this.onUpdate();
+      }
+      if (rowAction.action === 'OnDelete')
+      {
+        this.onDelete();
+      }
+  }
+
+  // onRowClick(row: any){
+  //   this.showRowActions = true;
+  //   this.selectedDepartment = row;
+  //   this.selectedRowIdx = row._id;
+  // }
 
   onTableRefresh()
   {
@@ -78,7 +101,7 @@ export class DeptListComponent implements OnInit {
       width: '50vw',
       minWidth: '50vw'
     });
-    dialogRef.componentInstance.dept_id = this.selectedDepartment._id;
+    dialogRef.componentInstance.dept_id = this.selectedRowIdx
 
     dialogRef.afterClosed().subscribe(response => {
       if (response.editDepartment)
@@ -95,7 +118,7 @@ export class DeptListComponent implements OnInit {
     .subscribe( response => {
       if (response.positive)
       {
-        this.apiService.delete(this.selectedDepartment._id).subscribe( response => {
+        this.apiService.delete(this.selectedRowIdx).subscribe( response => {
           AlertsService.success('Delete', 'Department Successfully deleted.').subscribe( resp => {
             if (resp.positive) {
               this.onTableRefresh();

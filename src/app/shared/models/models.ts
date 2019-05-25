@@ -10,3 +10,9 @@ interface User {
     token: string;
     isAdmin: boolean;
 }
+
+interface RowAction {
+    title: string,
+    icon: string,
+    action: string
+}
