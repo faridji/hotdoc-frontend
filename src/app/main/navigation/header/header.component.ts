@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { MatDialog } from '@angular/material';
+import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   user: User;
   
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private dialog: MatDialog) { }
  
   ngOnInit() {
     this.authService.user.subscribe( (response: User) => {
@@ -26,7 +28,11 @@ export class HeaderComponent implements OnInit {
   }
 
   signUp() {
-    this.router.navigate(['/sign-up'])
+    const dialog = this.dialog.open(SignUpComponent, {
+      width: '40vw',
+      minWidth: '40vw'
+    });
+
   }
 
   logout()

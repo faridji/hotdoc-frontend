@@ -25,7 +25,7 @@ export class DoctorFormComponent implements OnInit {
   constructor(private fb: FormBuilder, 
               private apiService: DoctorService,
               private deptService: DeptService,
-              private dialogRef: MatDialogRef<SignUpComponent>) 
+              private dialogRef: MatDialogRef<DoctorFormComponent>) 
   {
     this.theForm = this.fb.group({
       name: ['', Validators.required],

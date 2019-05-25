@@ -1,6 +1,11 @@
-<form [formGroup]="theForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center center">
-    <div fxLayout="row wrap" fxFlex="50" fxFlex.sm="100" fxFlex.md="100" fxFlex.xs="100">
-        <h1 fxFlex="100">Patient Sign Up</h1>
+<form [formGroup]="theForm" fxLayout="row wrap" (ngSubmit)="onSubmit()" fxLayoutAlign="center center">
+    <div mat-dialog-title fxFlex="100" fxLayout="row"  fxLayoutAlign="space-between center">
+        <h2 *ngIf="!patient_id">Patient Sign Up</h2>
+        <h2 *ngIf="patient_id">Update Patient</h2>
+        <mat-icon style="cursor: pointer;" (click)="onCancel()">close</mat-icon>
+    </div>
+
+    <div mat-dialog-content fxLayout="row wrap" fxFlex="100">
         <mat-form-field fxFlex="100">
             <input matInput formControlName="name" type="text" placeholder="Username">
             <mat-error *ngIf="name.hasError('required')">user name is <strong>required</strong></mat-error>
@@ -46,11 +51,9 @@
             <input placeholder="Upload image" formControlName="image" type="file">
         </mat-form-field> -->
 
-        <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" style="margin-top: 10px">
+        <div mat-dialog-actions fxFlex fxLayout="row" fxLayoutAlign="space-between start" style="margin-top: 10px">
             <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid || theForm.pristine">Save</button>
-            <button *ngIf="patient_id || inDialog" type="button" 
-                    mat-raised-button color="warn"
-                    (click)="onCancel()">Cancel</button>
+            <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
         </div>
     </div>
 </form>

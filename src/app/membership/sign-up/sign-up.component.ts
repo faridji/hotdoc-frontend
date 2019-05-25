@@ -7,8 +7,8 @@ import { AlertAction } from 'src/app/shared/alerts/alerts.common';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { MatDialogRef } from '@angular/material';
 import { PatientService } from 'src/app/shared/services/patient.service';
+import { MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -89,7 +89,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onCancel(){
-    this.dialogRef.close({ edit: false })
+    this.dialogRef.close()
   }
 
   onSubmit() {
@@ -122,6 +122,7 @@ export class SignUpComponent implements OnInit {
           AlertsService.success('Success', 'Patient Created.').subscribe((resp: AlertAction) => {
             if(resp.positive)
             {
+              this.dialogRef.close();
               this.router.navigate(['/home']);
             }
           });
