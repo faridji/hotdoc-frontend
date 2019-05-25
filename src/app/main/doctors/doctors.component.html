@@ -1,8 +1,8 @@
-<div fxLayout="row wrap" fxFlex="100" class="doctors-panel" *ngIf="doctors.length > 0">
+<div fxLayout="row wrap" fxFlex="100" class="doctors-panel">
   <h1 class="doctors-panel-title" fxFlex="100">Doctors</h1>
-  <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutGap.xs="20px" fxLayout.xs="column" fxFlex="100">
-      <div class="image-flip" ontouchstart="this.classList.toggle('hover');"
-            fxFlex="30" fxFlex.xs="100" fxFlex.sm="49" *ngFor = "let doctor of doctors">
+  <div *ngIf="!loading && doctors.length > 0" fxLayout="row wrap" fxLayoutGap="30px" fxLayoutGap.xs="20px" fxLayout.xs="column" fxFlex="100">
+    <div class="image-flip" ontouchstart="this.classList.toggle('hover');"
+        fxFlex="30" fxFlex.xs="100" fxFlex.sm="49" *ngFor = "let doctor of doctors">
         <div class="mainflip">        
           <div class="frontside">
               <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
@@ -26,7 +26,11 @@
                   <button type="button" mat-raised-button class="primary-button" (click)="doctorDetail(doctor._id)">Detail</button>
             </mat-card>
           </div>
-        </div>
       </div>
-    </div>
+    </div> 
+  </div>
+
+  <div *ngIf="loading" fxFlex="100" fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

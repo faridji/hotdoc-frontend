@@ -8,14 +8,18 @@ import { DeptService } from 'src/app/shared/services/dept.service';
 })
 export class DepartmentsComponent implements OnInit {
   departments: any;
+  loading: boolean;
 
   constructor(private apiService: DeptService) { 
     this.departments = [];
+    this.loading = false;
   }
 
   ngOnInit() {
+    this.loading = true;
     this.apiService.getAll().subscribe( resp => {
       this.departments = resp;
+      this.loading = false;
     })
   }
 

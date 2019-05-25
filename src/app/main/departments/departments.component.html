@@ -1,24 +1,28 @@
-<div fxLayout="row wrap" fxFlex="100" class="department-panel" *ngIf="departments.length > 0">
+<div fxLayout="row wrap" fxFlex="100" class="department-panel">
   <h1 class="department-panel-title" fxFlex="100">Departments</h1>
-  <div fxLayout="row wrap" fxLayoutGap="30px" fxLayoutGap.xs="20px" fxLayout.xs="column" fxFlex="100">
-      <div class="image-flip" ontouchstart="this.classList.toggle('hover');"
-            fxFlex="30" fxFlex.xs="100" fxFlex.sm="49" *ngFor = "let department of departments">
-        <div class="mainflip">        
-          <div class="frontside">
-              <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
-                        fxFlex="100" style="color: #007b5e;">
-                  <img class="round-img" src="{{ department.picture ? department.picture : '/assets/images/avatar.jpg' }}" alt="image">
-                  <h3>{{ department.name }}</h3>
-              </mat-card>
-          </div>
-          <div class="backside">
+  <div *ngIf="!loading && departments.length > 0" fxLayout="row wrap" fxLayoutGap="30px" fxLayoutGap.xs="20px" fxLayout.xs="column" fxFlex="100">
+    <div class="image-flip" ontouchstart="this.classList.toggle('hover');"
+          fxFlex="30" fxFlex.xs="100" fxFlex.sm="49" *ngFor = "let department of departments">
+      <div class="mainflip">        
+        <div class="frontside">
             <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
-                        fxFlex="fxFlex" class="card">
-                <h4 class="card-title">{{ department.name }}</h4>
-                <p class="card-text" >{{ department.description }}</p>
+                      fxFlex="100" style="color: #007b5e;">
+                <img class="round-img" src="{{ department.picture ? department.picture : '/assets/images/avatar.jpg' }}" alt="image">
+                <h3>{{ department.name }}</h3>
             </mat-card>
-          </div>
+        </div>
+        <div class="backside">
+          <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+                      fxFlex="fxFlex" class="card">
+              <h4 class="card-title">{{ department.name }}</h4>
+              <p class="card-text" >{{ department.description }}</p>
+          </mat-card>
         </div>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="loading" fxFlex="100" fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

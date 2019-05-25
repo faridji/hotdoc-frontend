@@ -12,18 +12,21 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class DoctorsComponent implements OnInit {
 
   doctors: any;
-
+  loading: boolean;
 
   constructor(private router: Router, private doctorService: DoctorService) { 
     this.doctors = [];
+    this.loading = false;
   }
 
   ngOnInit() {
+    this.loading = true;
     this.doctorService.getAll().subscribe( resp => {
-      console.log('Resp -> ', resp);
+      this.loading = false;
       this.doctors = resp;
 
     }, (error : HttpErrorResponse) => {
+      this.loading = false;
       AlertsService.error('Error', error.message);
     });
   }
