@@ -23,7 +23,7 @@ export class DoctorsListComponent implements OnInit {
   loading: boolean;
   
   constructor(private apiService: DoctorService, private dialog: MatDialog) { 
-    this.displayedColumns = ['name', 'email', 'password', 'mob_number','education','department','experience','age'];
+    this.displayedColumns = ['name', 'email', 'mob_number','education','department','experience'];
     this.doctors = null;
     this.selectedDoctor = null;
     this.selectedRowIdx = '';

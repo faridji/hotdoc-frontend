@@ -12,3 +12,7 @@
 .item:hover{
     background-color: #d1dae1;
 }
+
+.admin-side-bar {
+    height: 100% !important;
+}
