@@ -14,40 +14,42 @@
     </mat-card-content>
   </mat-card>
 
-  <div fxFlex="65" fxLayout="row wrap" fxFlex.xs="100" fxFlex.sm="50">
-    <div fxFlex="100" fxLayout="row wrap">
-      <div fxFlex="100">Department</div>
-      <mat-form-field fxFlex appearance="outline">
-        <mat-select>
+  <div fxFlex="65" fxFlex.xs="100" fxFlex.sm="50">
+    
+    <form [formGroup]="theForm" (ngSubmit)="makeAppointment()" fxFlex="50" fxLayout="row wrap" fxLayoutAlign="center">
+      <mat-form-field fxFlex="100">
+        <mat-select placeholder="Select Department" formControlName="department">
           <mat-option *ngFor="let dept of departments" [value]="dept?.name">
             {{dept?.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-
-    <div fxFlex="100" fxLayout="row wrap">
-      <div fxFlex="100">Doctor</div>
-      <mat-form-field fxFlex appearance="outline">
-        <mat-select>
-          <mat-option *ngFor="let doctor of doctors" [value]="doctor">
-            {{doctor}}
+    
+      <mat-form-field fxFlex="100">
+        <mat-select placeholder="Select Doctor" formControlName="doctor">
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor?.name">
+            {{doctor?.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-
-    <div fxFlex="100" fxLayout="row wrap">
-      <div fxFlex="100">Appointment Date</div>
-      <mat-form-field fxFlex appearance="outline">
-        <input matInput [matDatepicker]="appointment_date_picker" placeholder="Choose Appointment date">
+    
+      <mat-form-field fxFlex="100">
+        <input matInput [matDatepicker]="appointment_date_picker" formControlName="date_of_appointment" placeholder="Choose Appointment date">
         <mat-datepicker-toggle matSuffix [for]="appointment_date_picker"></mat-datepicker-toggle>
         <mat-datepicker #appointment_date_picker></mat-datepicker>
       </mat-form-field>
-    </div>
-
-    <div fxFlex="100" fxLayout="row wrap">
-      <button mat-raised-button color="primary">Submit</button>
-    </div>
+    
+      <mat-form-field fxFlex="100">
+        <mat-select placeholder="Select Treatment Type" formControlName="treatment_types">
+          <mat-option *ngFor="let type of treatment_type" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <div fxFlex="100" fxLayout="row wrap">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!theForm.valid">Submit</button>
+      </div>
+    </form>
   </div>
 </div>

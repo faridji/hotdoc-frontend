@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { AlertAction } from 'src/app/shared/alerts/alerts.common';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -43,15 +42,11 @@ export class PatientSignInComponent implements OnInit {
         const decodedToken = new JwtHelperService().decodeToken(token);
         this.authService.user.next(decodedToken);
       }
-        
-      AlertsService.success('Login', 'Patient Login successfully.').subscribe((resp: AlertAction) => {
-        if(resp.positive)
-        {
-          let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          returnUrl = returnUrl ? returnUrl : 'home';
-          this.router.navigate([returnUrl]);
-        }
-      });
+      
+      let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+      returnUrl = returnUrl ? returnUrl : 'home';
+      this.router.navigate([returnUrl]);
+
       }, (error: HttpErrorResponse) => {
         AlertsService.error(error.statusText, error.error);
       })

@@ -26,6 +26,12 @@ export class DoctorDetailComponent implements OnInit {
 
   makeAppointment()
   {
+    this.doctorService.doctor_data.next(
+    { 
+      name: this.doctor_details.name,
+      dept: this.doctor_details.department
+    });
+
     this.router.navigate(['/appointments'])
   }
 }

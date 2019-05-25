@@ -14,6 +14,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { DoctorDetailComponent } from './doctors/detail/detail.component';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { patientAuthGuard } from '../shared/services/patientAuthGuard.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes =  [
@@ -43,6 +44,7 @@ const routes: Routes =  [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes)
   ],
