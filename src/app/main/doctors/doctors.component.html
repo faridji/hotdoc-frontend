@@ -23,7 +23,7 @@
                     </ng-container>
                   </div>
 
-                  <button type="button" mat-raised-button class="primary-button" (click)="doctorDetail(doctor._id)">Detail</button>
+                  <button type="button" mat-raised-button class="primary-button" [routerLink]="['/doctors', doctor._id, doctor.name]">Detail</button>
             </mat-card>
           </div>
       </div>

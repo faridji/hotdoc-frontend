@@ -1,15 +1,19 @@
 <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start" style="padding:10px;">
 
-  <mat-card fxFlex="30" *ngIf="doctor_details">
+  <mat-card fxFlex="30" fxFlex.xs="100" *ngIf="doctor_details">
     <mat-card-content fxFlex fxLayout="row wrap">
-      <h2 fxFlex="100" fxLayoutAlign="start" style="margin-bottom: 10px;">{{doctor_details.name}}</h2>
-      <img fxFlex="50" [src]="doctor_details.image ? doctor_details.image : '/assets/images/avatar.jpg'"  
+      <h2 fxFlex="100" class="doctor_title" fxLayoutAlign="start" style="margin-bottom: 10px;">{{doctor_details.name}}</h2>
+      <img fxFlex="50" fxFlex.xs="40" [src]="doctor_details.image ? doctor_details.image : '/assets/images/avatar.jpg'"  
             class="rounded_img" alt="doctor image" style="margin-bottom: 10px">
       <button fxFlex="100" mat-raised-button color="primary" (click)="makeAppointment()">Make Appointment</button>
     </mat-card-content>
   </mat-card>
 
-  <mat-card fxFlex="68">
+  <div fxFlex="100" class="doctor-detail-heading" fxHide fxShow.xs="true">
+    Doctor Details
+  </div>
+
+  <mat-card fxFlex="68" fxFlex.xs="100">
     <mat-card-content fxFlex fxLayout="row wrap">
       <div fxFlex="100" fxLayout="row wrap" style="margin-bottom: 20px;">
         <img  src="/assets/extras/education.png" alt="education" width="100px" height="100px" 

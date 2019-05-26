@@ -7,7 +7,13 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class PatientService extends GenericApiService{
-  constructor(http: HttpClient) {
-    super(http, 'https://hotdocv1-0.herokuapp.com/api/Patients');
+
+  url: string = "https://hotdocv1-0.herokuapp.com/api/Patients";
+  constructor(protected http: HttpClient) {
+    super(http, "https://hotdocv1-0.herokuapp.com/api/Patients");
+  }
+
+  makeAppointment(postData: any) {
+    return this.http.post(this.url + '/makeAppointment', postData);
   }
 }

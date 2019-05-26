@@ -30,9 +30,4 @@ export class DoctorsComponent implements OnInit {
       AlertsService.error('Error', error.message);
     });
   }
-
-  doctorDetail(id: string) {
-    this.router.navigate(['doctors', id])
-  }
-
 }

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GenericApiService {
 
-  constructor(private http: HttpClient, private url: string) 
+  constructor(protected http: HttpClient, protected url: string) 
   { 
   }
 

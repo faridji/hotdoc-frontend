@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DeptService } from 'src/app/shared/services/dept.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PatientService } from 'src/app/shared/services/patient.service';
-import { BehaviorSubject } from 'rxjs';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 
 @Component({
   selector: 'app-appointments',
@@ -13,12 +15,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AppointmentsComponent implements OnInit {
 
-  patientInfo: any;
   departments: any;
   doctors: any;
+
   treatment_type: any[];
+  patientInfo: any;
   doctorInfo: any;
+
   theForm: FormGroup;
+
+  today_date: Date;
 
   constructor(private deptService: DeptService,
               private doctorService: DoctorService,
@@ -39,7 +45,10 @@ export class AppointmentsComponent implements OnInit {
       treatment_types: ['', Validators.required]
     });
 
+    this.today_date = new Date();
+
     this.theForm.controls.treatment_types.setValue('Face to Face');
+    this.theForm.controls.date_of_appointment.setValue(this.today_date);
   }
 
   ngOnInit() {
@@ -69,9 +78,20 @@ export class AppointmentsComponent implements OnInit {
     });
   }
 
+  onDateSelected(ev: MatDatepickerInputEvent<any>)
+  {
+    const date = new Date(ev.value).getTime() / 1000;
+    this.theForm.controls.date_of_appointment.setValue(date);
+  }
+
   makeAppointment()
   {
-    console.log(this.theForm.value);
+    this.patientService.makeAppointment(this.theForm.value).subscribe( resp => {
+      console.log(resp);
+    }, (error: HttpErrorResponse) => {
+      
+      AlertsService.error('Server Error', error.message);
+    });
   }
 
 }

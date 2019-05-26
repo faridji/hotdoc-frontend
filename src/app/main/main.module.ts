@@ -22,7 +22,7 @@ const routes: Routes =  [
 
   { path: "home", component: HomeComponent },
   { path: "doctors", component: DoctorsComponent },
-  { path: "doctors/:id", component: DoctorDetailComponent},
+  { path: "doctors/:id/:name", component: DoctorDetailComponent},
   { path: "departments", component: DepartmentsComponent },
   { path: "appointments", component: AppointmentsComponent, canActivate: [patientAuthGuard] },
   { path: "about", component: AboutComponent },

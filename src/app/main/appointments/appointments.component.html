@@ -16,7 +16,7 @@
 
   <div fxFlex="65" fxFlex.xs="100" fxFlex.sm="50">
     
-    <form [formGroup]="theForm" (ngSubmit)="makeAppointment()" fxFlex="50" fxLayout="row wrap" fxLayoutAlign="center">
+    <form [formGroup]="theForm" (ngSubmit)="makeAppointment()" fxFlex="75" fxFlex.xs="100" fxLayout="row wrap" fxLayoutAlign="center">
       <mat-form-field fxFlex="100">
         <mat-select placeholder="Select Department" formControlName="department">
           <mat-option *ngFor="let dept of departments" [value]="dept?.name">
@@ -34,8 +34,13 @@
       </mat-form-field>
     
       <mat-form-field fxFlex="100">
-        <input matInput [matDatepicker]="appointment_date_picker" formControlName="date_of_appointment" placeholder="Choose Appointment date">
-        <mat-datepicker-toggle matSuffix [for]="appointment_date_picker"></mat-datepicker-toggle>
+        <input matInput 
+              [min]="today_date" 
+              [matDatepicker]="appointment_date_picker" 
+              formControlName="date_of_appointment" 
+              placeholder="Choose Appointment date"
+              (dateChange)="onDateSelected($event)">
+        <mat-datepicker-toggle  matSuffix [for]="appointment_date_picker"></mat-datepicker-toggle>
         <mat-datepicker #appointment_date_picker></mat-datepicker>
       </mat-form-field>
     
