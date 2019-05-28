@@ -1,4 +1,4 @@
-<app-layout>
+<app-layout perfectScrollbar [ngStyle]="{'height': '100%', 'position': 'relative'}">
   <mat-sidenav-container class="all-wrap">
     <mat-sidenav #sidenav role="navigation">
       <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>

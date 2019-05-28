@@ -12,6 +12,14 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DeptListComponent } from './components/dept-list/dept-list.component';
 import { DepartmentFormComponent } from './components/dept-form/doctor.form';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 const routes: Routes =  [
   { path: "admin", component: AdminpanelComponent, canActivate: [adminAuthGuard] },
   { path: "dashboard", component: DashboardComponent, canActivate: [adminAuthGuard]},
@@ -37,6 +45,9 @@ const routes: Routes =  [
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
+
+    PerfectScrollbarModule,
+
     RouterModule.forChild(routes),
   ],
   entryComponents: [DoctorFormComponent, DepartmentFormComponent]

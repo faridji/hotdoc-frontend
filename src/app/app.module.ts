@@ -2,6 +2,14 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 import { MaterialModule } from './material-components/material-components.module';
 import { MainModule } from "./main/main.module";
 import { MembershipModule } from "./membership/membership.module";
@@ -20,6 +28,8 @@ import { AdminModule } from './admin/admin.module';
     FormsModule,
     HttpClientModule,
 
+    PerfectScrollbarModule,
+
     AdminModule,
     SharedModule,
     MainModule,
@@ -28,6 +38,12 @@ import { AdminModule } from './admin/admin.module';
     RouterModule.forRoot([]),
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ]
 })
 export class AppModule {}
