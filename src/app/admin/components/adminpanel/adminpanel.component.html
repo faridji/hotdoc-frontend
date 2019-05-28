@@ -1,5 +1,5 @@
-<div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start" style="height: calc(100vh - 90px);">
-  <div fxFlex="20" class="admin-side-bar">
+<div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="30px" style="height: calc(100vh - 90px);">
+  <div fxFlex="20" class="admin-side-bar" fxHide.xs fxShow>
     <mat-card style="padding: 0; height: 100%;">
       <mat-list role="list" class="list">
         <mat-list-item [class.selected]="m === selectedMenu" class="item" 
@@ -9,7 +9,7 @@
     </mat-card>
   </div>
 
-  <div fxFlex="78" fxLayout="row wrap">
+  <div fxFlex fxLayout="row wrap">
 
     <ng-container *ngIf="selectedMenu === 'Dashboard'">
       <dashboard fxFlex="100"></dashboard>

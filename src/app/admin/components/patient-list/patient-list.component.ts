@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { MatTable, MatDialog } from '@angular/material';
+import { MatTable, MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { SignUpComponent } from 'src/app/membership/sign-up/sign-up.component';
 import { PatientService } from 'src/app/shared/services/patient.service';
 
@@ -15,8 +15,9 @@ import { PatientService } from 'src/app/shared/services/patient.service';
 export class PatientListComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
-
-  patients: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  
+  patients: MatTableDataSource<{}>;
   displayedColumns: string[] = ['name', 'email', 'password', 'mob_number', 'age', 'address', 'actions'];
   rowActions: any[];
 
@@ -45,7 +46,9 @@ export class PatientListComponent implements OnInit {
   {
     this.loading = true;
     this.apiService.getAll().subscribe( response => {
-      this.patients = response;
+      const data: any = response;
+      this.patients = new MatTableDataSource(data);
+      this.patients.paginator = this.paginator;
       this.loading = false;
     });
   }

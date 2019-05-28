@@ -4,7 +4,7 @@ import {
   MatButtonModule,MatCheckboxModule,MatIconModule,MatListModule,
   MatSidenavModule,MatToolbarModule,MatMenuModule,MatInputModule,
   MatCardModule,MatTabsModule,MatSelectModule,MatDialogModule,
-  MatDatepickerModule,MatNativeDateModule,MatTableModule, MatProgressBarModule, MatProgressSpinnerModule
+  MatDatepickerModule,MatNativeDateModule,MatTableModule, MatProgressBarModule, MatProgressSpinnerModule, MatPaginatorModule
 } from "@angular/material";
 
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -17,7 +17,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatButtonModule,MatCheckboxModule,MatIconModule,MatListModule,
     MatSidenavModule,MatToolbarModule,MatMenuModule,MatInputModule,
     MatCardModule,MatTabsModule,MatSelectModule,MatDialogModule,
-    MatDatepickerModule,MatNativeDateModule,MatTableModule,MatProgressBarModule,
+    MatDatepickerModule,MatNativeDateModule,MatTableModule, MatPaginatorModule ,MatProgressBarModule,
     MatProgressSpinnerModule
   ]
 })

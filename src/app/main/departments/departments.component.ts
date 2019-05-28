@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeptService } from 'src/app/shared/services/dept.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AlertsService } from 'src/app/shared/alerts/alerts.service';
 
 @Component({
   selector: 'departments',
@@ -20,7 +22,10 @@ export class DepartmentsComponent implements OnInit {
     this.apiService.getAll().subscribe( resp => {
       this.departments = resp;
       this.loading = false;
-    })
+    }, (error : HttpErrorResponse) => {
+      this.loading = false;
+      AlertsService.error('Error', error.message);
+    });
   }
 
 }

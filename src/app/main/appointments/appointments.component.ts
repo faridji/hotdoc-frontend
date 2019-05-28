@@ -64,6 +64,11 @@ export class AppointmentsComponent implements OnInit {
       }
     });
 
+    this.getData();    
+  }
+
+  getData()
+  {
     this.deptService.getAll().subscribe(resp => {
       this.departments = resp;
     });
