@@ -13,12 +13,7 @@ import { DeptListComponent } from './components/dept-list/dept-list.component';
 import { DepartmentFormComponent } from './components/dept-form/doctor.form';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
- 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
+import { AgmCoreModule } from '@agm/core';
 
 const routes: Routes =  [
   { path: "admin", component: AdminpanelComponent, canActivate: [adminAuthGuard] },
@@ -46,9 +41,13 @@ const routes: Routes =  [
     ReactiveFormsModule,
     MaterialModule,
 
+    RouterModule.forChild(routes),
+
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCc0_eiU398d7YGmm4Coab7GTR0nN2A_QY',
+    }),
     PerfectScrollbarModule,
 
-    RouterModule.forChild(routes),
   ],
   entryComponents: [DoctorFormComponent, DepartmentFormComponent]
 })

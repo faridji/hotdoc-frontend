@@ -9,6 +9,10 @@ import { DashboardApiService } from 'src/app/shared/services/dashboard-api.servi
 export class DashboardComponent implements OnInit {
 
   getAllCounts: any;
+  
+  lat: number = 33.6844;
+  lng: number = 73.0479;
+  
   constructor(private dashboardApi: DashboardApiService) {
     this.getAllCounts = {};
    }
